@@ -1,0 +1,65 @@
+import java.text.SimpleDateFormat
+apply plugin: 'com.android.application'
+/**
+ * @author Yury
+ * 天坦项目构建环境搭建
+ */
+android {
+    def  AppName = "天坦倒计时"
+    compileSdkVersion 22
+    buildToolsVersion '23.0.0 rc2'
+    SimpleDateFormat df = new SimpleDateFormat("yyMMddHHmm")
+    def version_code =df.format(new Date())
+    defaultConfig {
+        manifestPlaceholders = [APP_NAME:AppName]
+        applicationId "net.tatans.rhea.countdowntimer"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode version_code.toInteger()
+        versionName "1."+version_code
+    }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'hyperion'
+            keyPassword 'M*u!YTZp'
+            storeFile file('/root/.jenkins/hyperion-sign')
+            storePassword '$Fv0h)wY($zL%iX8'
+        }
+
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
+            applicationVariants.all { variant ->
+                def file = variant.outputs[0].outputFile
+                def f_parent=file.parent
+                def f_name=file.name
+                def app_release="app-release"
+                def app_debug="app-debug"
+                if((file.name).startsWith(app_release)){
+                    variant.outputs[0].outputFile = new File(f_parent, f_name.replace(app_release,AppName+"-"+version_code))
+                }
+                if((file.name).startsWith(app_debug)){
+                    variant.outputs[0].outputFile = new File(f_parent, f_name.replace(app_debug,AppName+ "-debug"))
+                }
+            }
+        }
+        debug {
+            signingConfig signingConfigs.releaseConfig
+            debuggable true
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'net.tatans.coeus:coeus-network:2.0.2-release'
+    compile 'com.android.support:design:22.2.1'
+}
