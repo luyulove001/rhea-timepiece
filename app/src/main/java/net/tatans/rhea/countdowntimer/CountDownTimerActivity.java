@@ -84,6 +84,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             wakeLock = null;
         }
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -130,7 +131,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 CountDownApplication.setPause(isPause);
                 break;
             case R.id.layout_stop:
-                stopCountDown();
+                finish();
                 break;
             default:
                 break;
@@ -202,11 +203,10 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      */
     public String showTime(long time) {
         String[] times = showTimeCount(time).split(":");
-        if (times[0].equals("00")){
+        if (times[0].equals("00")) {
 
             return Integer.valueOf(times[1]) + "分钟";
-        }
-        else
+        } else
             return times[0] + "小时" + times[1] + "分钟";
     }
 
@@ -262,7 +262,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 }
             }, 7000);
         }
-        if (preferences.getBoolean("isSpeaking", false)){
+        if (preferences.getBoolean("isSpeaking", false)) {
             Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
         }
         if (preferences.getBoolean("isVibrate", false))
