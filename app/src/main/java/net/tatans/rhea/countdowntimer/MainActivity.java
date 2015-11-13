@@ -1,52 +1,61 @@
 package net.tatans.rhea.countdowntimer;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.utils.Const;
+import net.tatans.rhea.utils.Preferences;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
 
-		FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-						.setAction("Action", null).show();
-			}
-		});
-	}
+public class MainActivity extends TatansActivity implements OnClickListener {
+    @ViewInject(id = R.id.start_time, click = "onClick")
+    LinearLayout start_time;
+    @ViewInject(id = R.id.setting, click = "onClick")
+    LinearLayout setting;
+    private Preferences preferences;
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_main);
+        initView();
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
+    /**
+     * 计算计时时间
+     */
+    private void initView() {
+        preferences = new Preferences(this);
+        long time = preferences.getLong("countDownTime", Const.TIME_30);
+        CountDownTimerActivity cdt = new CountDownTimerActivity();
+        start_time.setContentDescription("开始计时," + cdt.showTime(time));
+        if (preferences.getInt("intervalTime") == 0){
+            preferences.putInt("intervalTime", 1);
+        }
+    }
 
-		//noinspection SimplifiableIfStatement
-		if (id == R.id.action_settings) {
-			return true;
-		}
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.start_time:
+                intent.setClass(this, CountDownTimerActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.setting:
+                intent.setClass(this, SettingActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+    }
 
-		return super.onOptionsItemSelected(item);
-	}
 }

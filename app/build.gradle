@@ -50,10 +50,10 @@ android {
                 }
             }
         }
-        debug {
+        /*debug {
             signingConfig signingConfigs.releaseConfig
             debuggable true
-        }
+        }*/
     }
 }
 

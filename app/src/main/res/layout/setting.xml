@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3d3f43"
+    android:orientation="vertical">
+
+    <include layout="@layout/titlebar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#28292b"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/layout_countdown_set"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:contentDescription="@string/countdown_set">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/countdown_set"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/time_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_alignTop="@+id/arrows_countdown"
+                android:layout_toStartOf="@+id/arrows_countdown" />
+
+            <ImageView
+                android:id="@+id/arrows_countdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/img_arrows_left" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_cutoff_long" />
+
+        <RelativeLayout
+            android:id="@+id/layout_interval_set"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:contentDescription="@string/interval_set">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/interval_set"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/time_interval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:00"
+                android:textColor="#fff"
+                android:textSize="20sp"
+                android:layout_alignTop="@+id/arrows_interval"
+                android:layout_toStartOf="@+id/arrows_interval" />
+
+            <ImageView
+                android:id="@+id/arrows_interval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/img_arrows_left" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cutoff_long" />
+
+        <!--<RelativeLayout
+            android:id="@+id/layout_ringing_set"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:contentDescription="@string/ringing_set">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/ringing_set"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/img_arrows_left" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cutoff_long" />-->
+
+        <RelativeLayout
+            android:id="@+id/layout_model_set"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:contentDescription="@string/model_set">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="25dp"
+                android:text="@string/model_set"
+                android:textColor="#fff"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12dp"
+                android:src="@drawable/img_arrows_left" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,4 +1,26 @@
 <resources>
-    <string name="app_name">Timepiece</string>
+    <string name="app_name">倒计时</string>
+    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="countdown">倒计时</string>
+    <string name="setting">设置</string>
+    <string name="start">开始计时</string>
+    <string name="pause">暂停</string>
+    <string name="resume">继续</string>
+    <string name="stop">结束</string>
+    <string name="countdown_set">倒计时设置</string>
+    <string name="interval_set">时间间隔设置</string>
+    <string name="ringing_set">铃声设置</string>
+    <string name="model_set">播放模式设置</string>
+    <string name="time_1">1分钟</string>
+    <string name="time_5">5分钟</string>
+    <string name="time_10">10分钟</string>
+    <string name="time_15">15分钟</string>
+    <string name="time_30">30分钟</string>
+    <string name="time_45">45分钟</string>
+    <string name="time_hour_1">一小时</string>
+    <string name="time_hour_2">两小时</string>
+    <string name="custom">自定义</string>
+    <string name="custom_set">自定义时间设置</string>
+    <string name="custom_time">自定义时间</string>
 </resources>
