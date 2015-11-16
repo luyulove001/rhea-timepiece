@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
@@ -25,6 +26,11 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         initView();
     }
 
@@ -52,6 +58,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.start_time:
+                TatansToast.showAndCancel(this, "计时开始");
                 intent.setClass(this, CountDownTimerActivity.class);
                 startActivity(intent);
                 break;

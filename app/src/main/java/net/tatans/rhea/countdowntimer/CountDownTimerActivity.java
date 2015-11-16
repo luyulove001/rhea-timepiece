@@ -48,18 +48,19 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.start_time);
-        setTitle("计时开始");
         preferences = new Preferences(this);
         mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
         countDownTimer.start();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        tv_time.setText(showTimeCount(mMillisInFuture));
+        acquireWakeLock();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        acquireWakeLock();
+        setTitle(setTitle(showTimeMillis(tv_time.getText().toString())));
     }
 
     private PowerManager.WakeLock wakeLock = null;
@@ -197,17 +198,31 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     }
 
     /**
-     * 返回时间字符串
+     * 返回时间字符串,用于时间设置显示和开始时播报
      *
      * @param time
      */
     public String showTime(long time) {
         String[] times = showTimeCount(time).split(":");
         if (times[0].equals("00")) {
-
             return Integer.valueOf(times[1]) + "分钟";
         } else
-            return times[0] + "小时" + times[1] + "分钟";
+            return Integer.valueOf(times[0]) + "小时" + Integer.valueOf(times[1]) + "分钟";
+    }
+
+    /**
+     * 当重新点亮屏幕时播报还剩多少时间
+     * @return
+     */
+    private String setTitle(long time){
+        String[] times = showTimeCount(time).split(":");
+        if (times[0].equals("00")) {
+            return Integer.valueOf(times[1]) + "分钟" + Integer.valueOf(times[2]) + "秒";
+        } else if (times[0].equals("00") && times[1].equals("00")){
+            return Integer.valueOf(times[2]) + "秒";
+        }else{
+            return Integer.valueOf(times[0]) + "小时" + Integer.valueOf(times[1]) + "分钟" + Integer.valueOf(times[2]) + "秒";
+        }
     }
 
     /**

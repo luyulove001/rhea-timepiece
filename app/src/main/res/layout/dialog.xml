@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#3d3f43"
+    android:background="#000"
     android:orientation="vertical">
 
     <include layout="@layout/titlebar" />
