@@ -14,13 +14,13 @@
         android:layout_height="108dp"
         android:contentDescription="@string/start"
         android:focusable="true"
-        android:gravity="bottom">
+        android:gravity="bottom|center_horizontal">
 
         <TextView
             android:id="@+id/tv_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_home"
+            android:layout_width="280dp"
+            android:layout_height="66dp"
+            android:background="@drawable/button"
             android:focusable="false"
             android:gravity="center"
             android:text="@string/start"
@@ -30,17 +30,17 @@
 
     <LinearLayout
         android:id="@+id/setting"
-        android:layout_width="wrap_content"
-        android:layout_height="108dp"
+        android:layout_width="match_parent"
+        android:layout_height="98dp"
         android:contentDescription="@string/setting"
         android:focusable="true"
-        android:gravity="bottom">
+        android:gravity="bottom|center_horizontal">
 
         <TextView
             android:id="@+id/tv_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_home"
+            android:layout_width="280dp"
+            android:layout_height="66dp"
+            android:background="@drawable/button"
             android:focusable="false"
             android:gravity="center"
             android:text="@string/setting"

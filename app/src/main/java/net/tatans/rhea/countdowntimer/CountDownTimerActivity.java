@@ -65,6 +65,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }else {
             setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
         }
+        tv_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
     }
 
     private PowerManager.WakeLock wakeLock = null;
@@ -160,6 +161,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         @Override
         public void onTick(long millisUntilFinished) {
             tv_time.setText(showTimeCount(millisUntilFinished));
+            tv_time.setContentDescription(showTime(millisUntilFinished));
             if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == 0) {
                 model(millisUntilFinished);
             }
