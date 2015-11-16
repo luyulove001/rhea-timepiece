@@ -60,7 +60,11 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        setTitle(setTitle(showTimeMillis(tv_time.getText().toString())));
+        if (isPause){
+            setTitle("计时已暂停");
+        }else {
+            setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
+        }
     }
 
     private PowerManager.WakeLock wakeLock = null;
@@ -204,25 +208,17 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      */
     public String showTime(long time) {
         String[] times = showTimeCount(time).split(":");
-        if (times[0].equals("00")) {
-            return Integer.valueOf(times[1]) + "分钟";
-        } else
-            return Integer.valueOf(times[0]) + "小时" + Integer.valueOf(times[1]) + "分钟";
-    }
-
-    /**
-     * 当重新点亮屏幕时播报还剩多少时间
-     * @return
-     */
-    private String setTitle(long time){
-        String[] times = showTimeCount(time).split(":");
-        if (times[0].equals("00")) {
-            return Integer.valueOf(times[1]) + "分钟" + Integer.valueOf(times[2]) + "秒";
-        } else if (times[0].equals("00") && times[1].equals("00")){
-            return Integer.valueOf(times[2]) + "秒";
-        }else{
-            return Integer.valueOf(times[0]) + "小时" + Integer.valueOf(times[1]) + "分钟" + Integer.valueOf(times[2]) + "秒";
+        String str = new String();
+        if (!times[0].equals("00")) {
+            str += Integer.valueOf(times[0]) + "小时";
         }
+        if (!times[1].equals("00")) {
+            str += Integer.valueOf(times[1]) + "分钟";
+        }
+        if (!times[2].equals("00")) {
+            str += Integer.valueOf(times[2]) + "秒";
+        }
+        return str;
     }
 
     /**
