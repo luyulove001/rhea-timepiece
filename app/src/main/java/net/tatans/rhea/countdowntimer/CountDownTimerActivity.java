@@ -273,9 +273,17 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      * 判断震动、铃声、语音
      */
     private void model(long millisUntilFinished, boolean isStop) {
-        if (preferences.getBoolean("isRinging", false)) {
+        if (preferences.getBoolean("isRinging", false) && !isStop) {
 //                mediaPlayer.start();
-            CountDownApplication.playMusic();
+            CountDownApplication.playMusic(R.raw.beep);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    CountDownApplication.stopPlay();
+                }
+            }, 1800);
+        }else{
+            CountDownApplication.playMusic(R.raw.terminationn);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -29,9 +29,9 @@ public class CountDownApplication extends Application {
         return isPause;
     }
 
-    public static void playMusic() {
+    public static void playMusic(int id) {
         try {
-            mediaPlayer = MediaPlayer.create(sInstance, R.raw.beep);
+            mediaPlayer = MediaPlayer.create(sInstance, id);
             mediaPlayer.start();
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
