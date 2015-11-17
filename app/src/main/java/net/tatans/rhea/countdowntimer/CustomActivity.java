@@ -21,6 +21,8 @@ import net.tatans.rhea.utils.Preferences;
  * Created by Administrator on 2015/10/28.
  */
 public class CustomActivity extends TatansActivity implements View.OnHoverListener, View.OnClickListener {
+    @ViewInject(id = R.id.title_bar)
+    LinearLayout lyt_title_bar;
     @ViewInject(id = R.id.tv_title)
     TextView tv_title;
     @ViewInject(id = R.id.tv_hour)
@@ -56,6 +58,7 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
         preferences = new Preferences(this);
         tv_hour.setContentDescription("0小时");
         tv_minute.setContentDescription("0分");
+        lyt_title_bar.setContentDescription("选中时间后，双指向上推增加一小时，下划减少一小时，左划减少十小时，右划增加十小时。");
     }
 
     @Override
@@ -93,9 +96,6 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
                 break;
             case R.id.tv_minute:
                 isMinute = true;
-                break;
-            case R.id.title_bar:
-                Toast.makeText(this, "双指向上推增加一小时，下划减少一小时，左划减少十小时，右划增加十小时。", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 isHour = false;

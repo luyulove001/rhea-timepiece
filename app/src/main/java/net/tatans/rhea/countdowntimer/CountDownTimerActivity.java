@@ -1,11 +1,13 @@
 package net.tatans.rhea.countdowntimer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -279,7 +281,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 public void run() {
                     CountDownApplication.stopPlay();
                 }
-            }, 7000);
+            }, 1800);
         }
         if (preferences.getBoolean("isSpeaking", false) && !isStop) {
             Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
@@ -289,5 +291,15 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         if (preferences.getBoolean("isVibrate", false))
             vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
     }
-
+    public boolean onKeyDown(int keyCode,KeyEvent event){
+        switch(keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                this.startActivity(intent);
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
