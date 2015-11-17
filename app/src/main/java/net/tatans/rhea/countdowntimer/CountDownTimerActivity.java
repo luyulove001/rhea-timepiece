@@ -105,7 +105,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
         if (countDownTimer != null) {
             countDownTimer.cancel();
-            countDownTimer.onFinish();
             countDownTimer = null;
             isStop = true;
         }
@@ -163,7 +162,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             tv_time.setText(showTimeCount(millisUntilFinished));
             tv_time.setContentDescription(showTime(millisUntilFinished));
             if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == 0) {
-                model(millisUntilFinished);
+                model(millisUntilFinished, false);
             }
         }
 
@@ -173,7 +172,14 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         @Override
         public void onFinish() {
             tv_time.setText("00:00:00");
-            finish();
+            model(0, true);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            }, 1000);
+
         }
     }
 
@@ -264,7 +270,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     /**
      * 判断震动、铃声、语音
      */
-    private void model(long millisUntilFinished) {
+    private void model(long millisUntilFinished, boolean isStop) {
         if (preferences.getBoolean("isRinging", false)) {
 //                mediaPlayer.start();
             CountDownApplication.playMusic();
@@ -275,8 +281,10 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 }
             }, 7000);
         }
-        if (preferences.getBoolean("isSpeaking", false)) {
+        if (preferences.getBoolean("isSpeaking", false) && !isStop) {
             Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
+        }else{
+            Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
         }
         if (preferences.getBoolean("isVibrate", false))
             vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
