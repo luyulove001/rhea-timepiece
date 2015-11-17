@@ -31,7 +31,7 @@ public class CountDownApplication extends Application {
 
     public static void playMusic() {
         try {
-            mediaPlayer = MediaPlayer.create(sInstance, R.raw.beep_beep);
+            mediaPlayer = MediaPlayer.create(sInstance, R.raw.beep);
             mediaPlayer.start();
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
