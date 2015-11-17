@@ -50,10 +50,10 @@ android {
                 }
             }
         }
-        /*debug {
-            signingConfig signingConfigs.releaseConfig
-            debuggable true
-        }*/
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
