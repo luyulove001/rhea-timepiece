@@ -62,9 +62,9 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        if (isPause){
+        if (isPause) {
             setTitle("计时已暂停");
-        }else {
+        } else {
             setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
         }
         tv_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
@@ -163,7 +163,11 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         public void onTick(long millisUntilFinished) {
             tv_time.setText(showTimeCount(millisUntilFinished));
             tv_time.setContentDescription(showTime(millisUntilFinished));
-            if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == 0) {
+            int remainder = (int) ((mMillisInFuture / 1000 / 60) % preferences.getInt("intervalTime"));
+            if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {
+                model(millisUntilFinished, false);
+            }
+            if ((millisUntilFinished / 1000) == 5 * 60 || (millisUntilFinished / 1000) == 60 || (millisUntilFinished / 1000) == 30) {
                 model(millisUntilFinished, false);
             }
         }
@@ -243,32 +247,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         return millis;
     }
 
-//    private void isOnTime() {
-//        switch (preferences.getInt("intervalTime")) {
-//            case 1:
-//                TatansLog.d(count + "");
-//                if (count % 60 == 0)
-//                    model();
-//                break;
-//            case 5:
-//                if (count % (5 * 60) == 0)
-//                    model();
-//                break;
-//            case 10:
-//                if (count % (10 * 60) == 0)
-//                    model();
-//                break;
-//            case 15:
-//                if (count % (15 * 60) == 0)
-//                    model();
-//                break;
-//            case 30:
-//                if (count % (30 * 60) == 0)
-//                    model();
-//                break;
-//        }
-//    }
-
     /**
      * 判断震动、铃声、语音
      */
@@ -282,7 +260,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                     CountDownApplication.stopPlay();
                 }
             }, 1800);
-        }else{
+        } else {
             CountDownApplication.playMusic(R.raw.terminationn);
             handler.postDelayed(new Runnable() {
                 @Override
@@ -293,14 +271,15 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }
         if (preferences.getBoolean("isSpeaking", false) && !isStop) {
             Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
-        }else{
+        } else {
             Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
         }
         if (preferences.getBoolean("isVibrate", false))
             vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
     }
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        switch(keyCode){
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
