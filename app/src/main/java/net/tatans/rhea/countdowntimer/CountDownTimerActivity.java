@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
@@ -42,8 +43,9 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     private Preferences preferences;
     private Vibrator vibrator;//震动
     private long[] pattern = {100, 400, 100, 400};   // 停止 开启 停止 开启 震动模式
-    private static int count;
     private Handler handler = new Handler();
+    private int remainder;
+    private PowerManager.WakeLock wakeLock;//唤醒锁
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         countDownTimer.start();
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         tv_time.setText(showTimeCount(mMillisInFuture));
+        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
+        TatansToast.showAndCancel(this, remainder+"");
         acquireWakeLock();
     }
 
@@ -69,8 +73,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }
         tv_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
     }
-
-    private PowerManager.WakeLock wakeLock = null;
 
     /**
      * 获取电源锁，保持该服务在屏幕熄灭时仍然获取CPU时，保持运行
@@ -163,7 +165,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         public void onTick(long millisUntilFinished) {
             tv_time.setText(showTimeCount(millisUntilFinished));
             tv_time.setContentDescription(showTime(millisUntilFinished));
-            int remainder = (int) ((mMillisInFuture / 1000 / 60) % preferences.getInt("intervalTime"));
             if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {
                 model(millisUntilFinished, false);
             }
