@@ -59,7 +59,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         tv_time.setText(showTimeCount(mMillisInFuture));
         remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
-        TatansToast.showAndCancel(this, remainder+"");
         acquireWakeLock();
     }
 
@@ -106,7 +105,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      * 停止计时
      */
     private void stopCountDown() {
-        Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
         if (countDownTimer != null) {
             countDownTimer.cancel();
             countDownTimer = null;
@@ -140,6 +138,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 CountDownApplication.setPause(isPause);
                 break;
             case R.id.layout_stop:
+                Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
                 finish();
                 break;
             default:
