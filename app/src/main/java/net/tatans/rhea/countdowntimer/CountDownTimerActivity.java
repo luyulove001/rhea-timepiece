@@ -13,7 +13,6 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
@@ -152,7 +151,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 CountDownApplication.setPause(isPause);
                 break;
             case R.id.layout_stop:
-                Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
+                CountDownApplication.getSpeaker().speech("倒计时结束");
                 stopService(new Intent(CountDownApplication.getInstance(), CountDownService.class));
                 handler.postDelayed(new Runnable() {
                     @Override

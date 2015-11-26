@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Vibrator;
 
-import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.utils.Preferences;
@@ -187,9 +186,9 @@ public class CountDownService extends Service {
             }, 1800);
         }
         if (preferences.getBoolean("isSpeaking", false) && !isStop) {
-            Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
+            CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
         } else {
-            Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
+            CountDownApplication.getSpeaker().speech("倒计时结束");
         }
         if (preferences.getBoolean("isVibrate", false))
             vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1

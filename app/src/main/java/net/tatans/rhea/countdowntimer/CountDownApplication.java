@@ -3,6 +3,8 @@ package net.tatans.rhea.countdowntimer;
 import android.app.Application;
 import android.media.MediaPlayer;
 
+import net.tatans.coeus.network.speaker.Speaker;
+
 /**
  * Created by Administrator on 2015/10/29.
  */
@@ -10,11 +12,19 @@ public class CountDownApplication extends Application {
     private static CountDownApplication sInstance;
     private static boolean isPause = true;
     private static MediaPlayer mediaPlayer;
+    private static Speaker speaker;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        speaker = Speaker.getInstance(sInstance);
+    }
+
+    public static Speaker getSpeaker() {
+        if (speaker == null)
+            speaker = Speaker.getInstance(sInstance);
+        return speaker;
     }
 
     public static CountDownApplication getInstance() {
