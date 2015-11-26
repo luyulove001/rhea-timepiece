@@ -26,6 +26,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        setTitle("首页");
     }
 
     @Override
