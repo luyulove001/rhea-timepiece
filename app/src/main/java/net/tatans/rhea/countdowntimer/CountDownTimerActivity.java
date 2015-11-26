@@ -1,12 +1,12 @@
 package net.tatans.rhea.countdowntimer;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.PowerManager;
-import android.os.Vibrator;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.TatansActivity;
-import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
@@ -33,32 +32,39 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     LinearLayout layout_pause_resume;
     @ViewInject(id = R.id.layout_stop, click = "onClick")
     LinearLayout layout_stop;
-    @ViewInject(id = R.id.btn_stop)
-    TextView btn_stop;
 
-    private MyCountDownTimer countDownTimer;//自定义倒计时类
+    private MyBroadcastReceiver myBroadcastReceiver;//自定义倒计时类
     private boolean isPause = false, isStop = false;
     private long pauseTime;//保存暂停时的剩余时间
-    private long mCountDownInterval = 1000, mMillisInFuture = Const.TIME_30;
+    private long mMillisInFuture = Const.TIME_30;
     private Preferences preferences;
-    private Vibrator vibrator;//震动
-    private long[] pattern = {100, 400, 100, 400};   // 停止 开启 停止 开启 震动模式
     private Handler handler = new Handler();
-    private int remainder;
     private PowerManager.WakeLock wakeLock;//唤醒锁
+    private Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.start_time);
+        initData();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initData() {
+        service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         preferences = new Preferences(this);
         mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
-        countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
-        countDownTimer.start();
-        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        service.putExtra("countDownTime", mMillisInFuture);
+        startService(service);
         tv_time.setText(showTimeCount(mMillisInFuture));
-        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
+        myBroadcastReceiver = new MyBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Const.CLOCK_START);
+        intentFilter.addAction(Const.CLOCK_STOP);
+        registerReceiver(myBroadcastReceiver, intentFilter);
         acquireWakeLock();
     }
 
@@ -97,18 +103,25 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopCountDown();
+        stopService(service);
         releaseWakeLock();
+        unregisterReceiver(myBroadcastReceiver);
     }
 
-    /**
-     * 停止计时
-     */
-    private void stopCountDown() {
-        if (countDownTimer != null) {
-            countDownTimer.cancel();
-            countDownTimer = null;
-            isStop = true;
+    private class MyBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Const.CLOCK_START.equals(intent.getAction())){
+                tv_time.setText(showTimeCount(intent.getLongExtra("countDownTime", 0)));
+            } else if(Const.CLOCK_STOP.equals(intent.getAction())){
+                tv_time.setText("00:00:00");
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 1000);
+            }
         }
     }
 
@@ -121,15 +134,15 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 if (!isPause) {
                     //继续计时
                     pauseTime = showTimeMillis(tv_time.getText().toString());
-                    countDownTimer.cancel();
+                    stopService(service);
                     btn_pause_resume.setText(R.string.resume);
                     btn_pause_resume.setContentDescription("继续");
                     layout_pause_resume.setContentDescription("继续");
                     isPause = true;
                 } else {
                     //暂停计时
-                    countDownTimer = new MyCountDownTimer(pauseTime, mCountDownInterval);
-                    countDownTimer.start();
+                    service.putExtra("countDownTime", pauseTime);
+                    startService(service);
                     btn_pause_resume.setText(R.string.pause);
                     btn_pause_resume.setContentDescription("暂停");
                     layout_pause_resume.setContentDescription("暂停");
@@ -139,6 +152,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 break;
             case R.id.layout_stop:
                 Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
+                stopService(new Intent(CountDownApplication.getInstance(), CountDownService.class));
                 finish();
                 break;
             default:
@@ -146,48 +160,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }
     }
 
-    /**
-     * 自定义倒计时类
-     */
-    class MyCountDownTimer extends CountDownTimer {
-
-        public MyCountDownTimer(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        /**
-         * 倒计时每秒回调
-         *
-         * @param millisUntilFinished
-         */
-        @Override
-        public void onTick(long millisUntilFinished) {
-            tv_time.setText(showTimeCount(millisUntilFinished));
-            tv_time.setContentDescription(showTime(millisUntilFinished));
-            if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {
-                model(millisUntilFinished, false);
-            }
-            if ((millisUntilFinished / 1000) == 5 * 60 || (millisUntilFinished / 1000) == 60 || (millisUntilFinished / 1000) == 30) {
-                model(millisUntilFinished, false);
-            }
-        }
-
-        /**
-         * 倒计时停止时回调
-         */
-        @Override
-        public void onFinish() {
-            tv_time.setText("00:00:00");
-            model(0, true);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            }, 1000);
-
-        }
-    }
 
     /**
      * 时间long值转换为字符串
@@ -247,44 +219,13 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         return millis;
     }
 
-    /**
-     * 判断震动、铃声、语音
-     */
-    private void model(long millisUntilFinished, boolean isStop) {
-        if (preferences.getBoolean("isRinging", false) && !isStop) {
-//                mediaPlayer.start();
-            CountDownApplication.playMusic(R.raw.beep);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    CountDownApplication.stopPlay();
-                }
-            }, 1800);
-        } else {
-            CountDownApplication.playMusic(R.raw.terminationn);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    CountDownApplication.stopPlay();
-                }
-            }, 1800);
-        }
-        if (preferences.getBoolean("isSpeaking", false) && !isStop) {
-            Speaker.getInstance(CountDownApplication.getInstance()).speech("还剩" + showTime(millisUntilFinished));
-        } else {
-            Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
-        }
-        if (preferences.getBoolean("isVibrate", false))
-            vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
-    }
-
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                this.startActivity(intent);
+                Intent startMain = new Intent(Intent.ACTION_MAIN);
+                startMain.addCategory(Intent.CATEGORY_HOME);
+                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(startMain);
                 return true;
         }
         return super.onKeyDown(keyCode, event);

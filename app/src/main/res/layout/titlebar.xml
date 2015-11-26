@@ -8,7 +8,7 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#e45d5d"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:text="@string/countdown"
         android:textColor="#fff"
