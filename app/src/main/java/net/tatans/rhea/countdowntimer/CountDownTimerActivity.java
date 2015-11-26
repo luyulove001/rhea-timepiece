@@ -113,6 +113,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         public void onReceive(Context context, Intent intent) {
             if (Const.CLOCK_START.equals(intent.getAction())){
                 tv_time.setText(showTimeCount(intent.getLongExtra("countDownTime", 0)));
+                tv_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
             } else if(Const.CLOCK_STOP.equals(intent.getAction())){
                 tv_time.setText("00:00:00");
                 handler.postDelayed(new Runnable() {
@@ -153,7 +154,12 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             case R.id.layout_stop:
                 Speaker.getInstance(CountDownApplication.getInstance()).speech("倒计时结束");
                 stopService(new Intent(CountDownApplication.getInstance(), CountDownService.class));
-                finish();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        finish();
+                    }
+                }, 1000);
                 break;
             default:
                 break;
