@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Preferences;
 
@@ -76,12 +77,12 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                     preferences.putBoolean("isRinging", true);
                     img_ringing.setBackgroundResource(R.drawable.bg_tick);
                     lyt_ringing.setContentDescription("音效，已选中");
-                    Toast.makeText(this, "音效，已选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "音效，已选中");
                 } else {
                     preferences.putBoolean("isRinging", false);
                     img_ringing.setBackgroundResource(R.drawable.bg_circle);
                     lyt_ringing.setContentDescription("音效，未选中");
-                    Toast.makeText(this, "音效，未选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "音效，未选中");
                 }
                 break;
             case R.id.lyt_vibrate:
@@ -89,12 +90,12 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                     preferences.putBoolean("isVibrate", true);
                     img_vibrate.setBackgroundResource(R.drawable.bg_tick);
                     lyt_vibrate.setContentDescription("震动，已选中");
-                    Toast.makeText(this, "震动，已选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "震动，已选中");
                 } else {
                     preferences.putBoolean("isVibrate", false);
                     img_vibrate.setBackgroundResource(R.drawable.bg_circle);
                     lyt_vibrate.setContentDescription("震动，未选中");
-                    Toast.makeText(this, "震动，未选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "震动，未选中");
                 }
                 break;
             case R.id.lyt_speak:
@@ -102,16 +103,24 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                     preferences.putBoolean("isSpeaking", true);
                     img_speak.setBackgroundResource(R.drawable.bg_tick);
                     lyt_speak.setContentDescription("语音，已选中");
-                    Toast.makeText(this, "语音，已选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "语音，已选中");
                 } else {
                     preferences.putBoolean("isSpeaking", false);
                     img_speak.setBackgroundResource(R.drawable.bg_circle);
                     lyt_speak.setContentDescription("语音，未选中");
-                    Toast.makeText(this, "语音，未选中", Toast.LENGTH_SHORT).show();
+                    TatansToast.showAndCancel(this, "语音，未选中");
                 }
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!preferences.getBoolean("isSpeaking", false) && !preferences.getBoolean("isVibrate", false)
+                && !preferences.getBoolean("isRinging", false))
+            TatansToast.showAndCancel(this, "您当前未选中任何播报提示");
     }
 }

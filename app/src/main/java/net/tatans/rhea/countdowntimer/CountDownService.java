@@ -166,30 +166,64 @@ public class CountDownService extends Service {
     /**
      * 判断震动、铃声、语音
      */
+//    private void model(long millisUntilFinished, boolean isStop) {
+//        if (isStop) {
+//            CountDownApplication.playMusic(R.raw.terminationn);
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    CountDownApplication.stopPlay();
+//                }
+//            }, 1800);
+//        } else if (preferences.getBoolean("isRinging", false)) {
+//            CountDownApplication.playMusic(R.raw.warning_tone);
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    CountDownApplication.stopPlay();
+//                }
+//            }, 1800);
+//        }
+//        if (isStop)
+//            CountDownApplication.getSpeaker().speech("倒计时结束");
+//        else if (preferences.getBoolean("isSpeaking", false))
+//            CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
+//
+//        if (preferences.getBoolean("isVibrate", false))
+//            vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
+//    }
     private void model(long millisUntilFinished, boolean isStop) {
-        if (isStop) {
-            CountDownApplication.playMusic(R.raw.terminationn);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    CountDownApplication.stopPlay();
-                }
-            }, 1800);
-        } else if (preferences.getBoolean("isRinging", false)) {
-            CountDownApplication.playMusic(R.raw.warning_tone);
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    CountDownApplication.stopPlay();
-                }
-            }, 1800);
+        if (preferences.getBoolean("isRinging", false)) {
+            if (isStop) {
+                CountDownApplication.playMusic(R.raw.terminationn);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        CountDownApplication.stopPlay();
+                    }
+                }, 1800);
+            } else {
+                CountDownApplication.playMusic(R.raw.warning_tone);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        CountDownApplication.stopPlay();
+                    }
+                }, 1800);
+            }
         }
-        if (isStop)
-            CountDownApplication.getSpeaker().speech("倒计时结束");
-        else if (preferences.getBoolean("isSpeaking", false))
-            CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
 
-        if (preferences.getBoolean("isVibrate", false))
-            vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
+        if (preferences.getBoolean("isSpeaking", false)) {
+            if (isStop)
+                CountDownApplication.getSpeaker().speech("倒计时结束");
+            else
+                CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
+        }
+        if (preferences.getBoolean("isVibrate", false)) {
+            if (isStop && !preferences.getBoolean("isSpeaking", false) && !preferences.getBoolean("isRinging", false))
+                vibrator.vibrate(3000);           //重复两次上面的pattern 如果只想震动一次，index设为-1
+            else
+                vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
+        }
     }
 }
