@@ -83,7 +83,7 @@ public class CountDownService extends Service {
          */
         @Override
         public void onTick(long millisUntilFinished) {
-            broadcast.setAction(Const.CLOCK_START);
+            broadcast.setAction(Const.CLOCK_TICK);
             broadcast.putExtra("countDownTime", millisUntilFinished);
             sendBroadcast(broadcast);
             if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {

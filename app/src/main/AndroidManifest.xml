@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".CountDownTimerActivity"
-            android:label="@string/countdown"
-             />
+            android:label="@string/countdown" />
         <activity
             android:name=".SettingActivity"
             android:label="@string/setting"
@@ -48,7 +47,15 @@
             android:name=".ModelActivity"
             android:label="@string/model_set"
             android:screenOrientation="portrait" />
-        <service android:name=".CountDownService"/>
+
+        <service android:name=".CountDownService" />
+        <receiver android:name=".LockReceiver">
+            <intent-filter>
+                <action android:name="net.tatans.rhea.lock.countDownTime.start" />
+                <action android:name="net.tatans.rhea.lock.countDownTime.pause" />
+                <action android:name="net.tatans.rhea.lock.countDownTime.restart" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

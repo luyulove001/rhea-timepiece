@@ -12,6 +12,10 @@ public class Const {
     public static final Long TIME_45 = Long.valueOf(45 * 60 * 1000);
     public static final Long TIME_HOUR_1 = Long.valueOf(60 * 60 * 1000);
     public static final Long TIME_HOUR_2 = Long.valueOf(2 * 60 * 60 * 1000);
-    public static final String CLOCK_START = "net.tatans.coeus.countdown.CountDownTime.clock.start";
+    public static final String CLOCK_TICK = "net.tatans.coeus.countdown.CountDownTime.clock.tick";
     public static final String CLOCK_STOP= "net.tatans.coeus.countdown.CountDownTime.clock.stop";
+    public static final String COUNTDOWN_TIME= "net.tatans.rhea.countdowntimer.countDownTime";
+    public static final String CLICK_START= "net.tatans.rhea.lock.countDownTime.start";
+    public static final String CLOCK_PAUSE= "net.tatans.rhea.lock.countDownTime.pause";
+    public static final String CLOCK_RESTART= "net.tatans.rhea.lock.countDownTime.restart";
 }
