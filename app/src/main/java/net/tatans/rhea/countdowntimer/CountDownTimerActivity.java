@@ -17,6 +17,7 @@ import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.utils.Util;
 
 
 /**
@@ -53,11 +54,12 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      * 初始化数据
      */
     private void initData() {
-        service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         preferences = new Preferences(this);
         mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
+        service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         service.putExtra("countDownTime", mMillisInFuture);
-        startService(service);
+        if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE))
+            startService(service);
         tv_time.setText(showTimeCount(mMillisInFuture));
         myBroadcastReceiver = new MyBroadcastReceiver();
         IntentFilter intentFilter = new IntentFilter();
@@ -110,10 +112,10 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     private class MyBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (Const.CLOCK_TICK.equals(intent.getAction())){
+            if (Const.CLOCK_TICK.equals(intent.getAction())) {
                 tv_time.setText(showTimeCount(intent.getLongExtra("countDownTime", 0)));
                 tv_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
-            } else if(Const.CLOCK_STOP.equals(intent.getAction())){
+            } else if (Const.CLOCK_STOP.equals(intent.getAction())) {
                 tv_time.setText("00:00:00");
                 handler.postDelayed(new Runnable() {
                     @Override

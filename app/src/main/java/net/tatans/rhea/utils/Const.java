@@ -18,4 +18,5 @@ public class Const {
     public static final String CLICK_START= "net.tatans.rhea.lock.countDownTime.start";
     public static final String CLOCK_PAUSE= "net.tatans.rhea.lock.countDownTime.pause";
     public static final String CLOCK_RESTART= "net.tatans.rhea.lock.countDownTime.restart";
+    public static final String COUNTDOWN_SERVICE= "net.tatans.rhea.countdowntimer.CountDownService";
 }

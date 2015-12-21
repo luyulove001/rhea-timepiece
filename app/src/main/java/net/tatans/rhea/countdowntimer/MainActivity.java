@@ -12,6 +12,7 @@ import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.utils.Util;
 
 
 public class MainActivity extends TatansActivity implements OnClickListener {
@@ -33,6 +34,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     protected void onResume() {
         super.onResume();
         initView();
+        isServiceAlive();
     }
 
     /**
@@ -51,6 +53,13 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             preferences.putBoolean("isVibrate", true);
             preferences.putBoolean("isSpeaking", true);
             preferences.putBoolean("isFirst", true);
+        }
+    }
+
+    private void isServiceAlive(){
+        if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)){
+            Intent intent = new Intent(this, CountDownTimerActivity.class);
+            startActivity(intent);
         }
     }
 
