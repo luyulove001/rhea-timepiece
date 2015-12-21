@@ -1,5 +1,6 @@
 package net.tatans.rhea.countdowntimer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -106,6 +107,9 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
         switch (v.getId()) {
             case R.id.lyt_confirm:
                 preferences.putLong("countDownTime", (hour * 60 + minute) * Const.TIME_1);
+                Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
+                boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
+                sendBroadcast(boardCost);
                 finish();
                 break;
         }
