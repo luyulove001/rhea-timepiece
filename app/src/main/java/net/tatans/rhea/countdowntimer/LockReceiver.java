@@ -26,7 +26,6 @@ public class LockReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Const.CLICK_START.equals(intent.getAction())) {
-            TatansToast.showAndCancel(context, " LockReceiver.onReceive:" + Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE) + "");
             if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
                 service.putExtra("countDownTime", intent.getLongExtra("countDownTime",
                         preferences.getLong("countDownTime", Const.TIME_30)));

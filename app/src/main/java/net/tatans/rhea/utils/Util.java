@@ -20,7 +20,7 @@ public class Util {
         boolean isWork = false;
         ActivityManager myAM = (ActivityManager) mContext
                 .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(40);
+        List<ActivityManager.RunningServiceInfo> myList = myAM.getRunningServices(400);
         if (myList.size() <= 0) {
             return false;
         }

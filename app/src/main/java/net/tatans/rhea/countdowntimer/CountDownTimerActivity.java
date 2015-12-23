@@ -72,10 +72,16 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
-        if (isPause) {
+        if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
             setTitle("计时已暂停");
+            btn_pause_resume.setText(R.string.resume);
+            btn_pause_resume.setContentDescription("继续");
+            layout_pause_resume.setContentDescription("继续");
         } else {
             setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
+            btn_pause_resume.setText(R.string.pause);
+            btn_pause_resume.setContentDescription("暂停");
+            layout_pause_resume.setContentDescription("暂停");
         }
         tv_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
     }
@@ -133,7 +139,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             case R.id.layout_pause_resume:
                 if (isStop)
                     return;
-                if (!isPause) {
+                if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
                     //继续计时
                     pauseTime = showTimeMillis(tv_time.getText().toString());
                     stopService(service);

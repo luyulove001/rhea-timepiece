@@ -4,6 +4,8 @@ import android.app.Application;
 import android.media.MediaPlayer;
 
 import net.tatans.coeus.network.speaker.Speaker;
+import net.tatans.coeus.network.tools.CrashHandler;
+import net.tatans.rhea.utils.Const;
 
 /**
  * Created by Administrator on 2015/10/29.
@@ -19,6 +21,8 @@ public class CountDownApplication extends Application {
         super.onCreate();
         sInstance = this;
         speaker = Speaker.getInstance(sInstance);
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.initTatans(this, "CountDown");
     }
 
     public static Speaker getSpeaker() {

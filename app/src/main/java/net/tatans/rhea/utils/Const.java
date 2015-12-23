@@ -4,6 +4,7 @@ package net.tatans.rhea.utils;
  * Created by Administrator on 2015/10/28.
  */
 public class Const {
+    public static final String CountDown = "CountDown";
     public static final Long TIME_1 = Long.valueOf(1 * 60 * 1000);
     public static final Long TIME_5 = Long.valueOf(5 * 60 * 1000);
     public static final Long TIME_10 = Long.valueOf(10 * 60 * 1000);
