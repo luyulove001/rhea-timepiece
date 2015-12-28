@@ -35,7 +35,6 @@ public class LockReceiver extends BroadcastReceiver {
             CountDownApplication.getInstance().stopService(service);
         } else if (Const.CLOCK_RESTART.equals(intent.getAction())) {
             CountDownApplication.getInstance().stopService(service);
-            CountDownApplication.getInstance().startService(service);
         }
     }
 }
