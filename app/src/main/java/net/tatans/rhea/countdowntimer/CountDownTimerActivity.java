@@ -126,6 +126,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        stopService(service);
                         finish();
                     }
                 }, 1000);
