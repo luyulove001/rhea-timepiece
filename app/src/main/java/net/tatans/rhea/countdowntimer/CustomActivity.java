@@ -47,11 +47,17 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.custom_time);
         setTitle("自定义时间设置");
+        initView();
+    }
+
+    private void initView() {
         tv_title.setText("自定义时间设置");
         mGD = new GestureDetector(this, new MyGesture());
         speaker = Speaker.getInstance(this);
         tv_hour.setOnHoverListener(this);
         tv_minute.setOnHoverListener(this);
+        tv_hour.setOnClickListener(this);
+        tv_minute.setOnClickListener(this);
         preferences = new Preferences(this);
         tv_hour.setContentDescription("0小时");
         tv_minute.setContentDescription("0分");
@@ -111,6 +117,12 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
                 boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
                 sendBroadcast(boardCost);
                 finish();
+                break;
+            case R.id.tv_hour:
+                isHour = true;
+                break;
+            case R.id.tv_minute:
+                isMinute = true;
                 break;
         }
     }
@@ -187,19 +199,19 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
             else if (isMinute)
                 minute += time;
             if (hour < 0)
-                hour += 24;
-            else if (hour >= 24)
-                hour -= 24;
+                hour = 0;
+            else if (hour >= 99)
+                hour = 99;
             if (minute < 0) {
                 minute += 60;
                 hour -= 1;
                 if (hour < 0)
-                    hour += 24;
+                    hour = 24;
             } else if (minute >= 60) {
                 minute -= 60;
                 hour += 1;
-                if (hour >= 24)
-                    hour -= 24;
+                if (hour >= 99)
+                    hour = 99;
             }
         }
     }
