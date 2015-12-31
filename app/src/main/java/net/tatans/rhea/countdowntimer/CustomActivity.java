@@ -203,15 +203,21 @@ public class CustomActivity extends TatansActivity implements View.OnHoverListen
             else if (hour >= 99)
                 hour = 99;
             if (minute < 0) {
-                minute += 60;
-                hour -= 1;
-                if (hour < 0)
-                    hour = 24;
+                if (hour <= 0) {
+                    minute = 0;
+                    hour = 0;
+                } else {
+                    minute += 60;
+                    hour -= 1;
+                }
             } else if (minute >= 60) {
-                minute -= 60;
-                hour += 1;
-                if (hour >= 99)
+                if (hour >= 99) {
                     hour = 99;
+                    minute = 59;
+                } else {
+                    minute -= 60;
+                    hour += 1;
+                }
             }
         }
     }
