@@ -1,16 +1,15 @@
 package net.tatans.rhea.countdowntimer;
 
-import android.app.Application;
 import android.media.MediaPlayer;
 
 import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.CrashHandler;
-import net.tatans.rhea.utils.Const;
+import net.tatans.coeus.network.tools.TatansApplication;
 
 /**
  * Created by Administrator on 2015/10/29.
  */
-public class CountDownApplication extends Application {
+public class CountDownApplication extends TatansApplication {
     private static CountDownApplication sInstance;
     private static boolean isPause = true;
     private static MediaPlayer mediaPlayer;
@@ -22,7 +21,7 @@ public class CountDownApplication extends Application {
         sInstance = this;
         speaker = Speaker.getInstance(sInstance);
         CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.initTatans(this, "CountDown");
+        crashHandler.initTatans("countdown");
     }
 
     public static Speaker getSpeaker() {

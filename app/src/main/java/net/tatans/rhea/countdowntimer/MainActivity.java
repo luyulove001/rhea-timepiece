@@ -68,7 +68,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.start_time:
-                TatansToast.showAndCancel(this, "计时开始");
+                TatansToast.showAndCancel("计时开始");
                 intent.setClass(this, CountDownTimerActivity.class);
                 startActivity(intent);
                 break;

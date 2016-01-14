@@ -20,7 +20,7 @@ public class Preferences {
     }
 
     public  int getInt(String key) {
-        return sharedPreferences.getInt(key, 0);
+        return sharedPreferences.getInt(key, 1);
     }
 
     public  void putString(String key, String value) {
