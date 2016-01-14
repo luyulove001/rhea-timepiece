@@ -193,7 +193,7 @@ public class CountDownService extends Service {
 //            vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
 //    }
     private void model(long millisUntilFinished, boolean isStop) {
-        if (preferences.getBoolean("isRinging", false)) {
+        if (preferences.getBoolean("isRinging", true)) {
             if (isStop) {
                 CountDownApplication.playMusic(R.raw.terminationn);
                 handler.postDelayed(new Runnable() {
@@ -213,14 +213,14 @@ public class CountDownService extends Service {
             }
         }
 
-        if (preferences.getBoolean("isSpeaking", false)) {
+        if (preferences.getBoolean("isSpeaking", true)) {
             if (isStop)
                 CountDownApplication.getSpeaker().speech("倒计时结束");
             else
                 CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
         }
-        if (preferences.getBoolean("isVibrate", false)) {
-            if (isStop && !preferences.getBoolean("isSpeaking", false) && !preferences.getBoolean("isRinging", false))
+        if (preferences.getBoolean("isVibrate", true)) {
+            if (isStop && !preferences.getBoolean("isSpeaking", true) && !preferences.getBoolean("isRinging", true))
                 vibrator.vibrate(3000);           //重复两次上面的pattern 如果只想震动一次，index设为-1
             else
                 vibrator.vibrate(pattern, -1);           //重复两次上面的pattern 如果只想震动一次，index设为-1
