@@ -16,8 +16,6 @@ import net.tatans.rhea.utils.Preferences;
  * Created by Administrator on 2015/10/27.
  */
 public class IntervalSettingActivity extends TatansActivity implements View.OnClickListener {
-    @ViewInject(id = R.id.tv_title)
-    TextView tv_title;
     @ViewInject(id = R.id.lyt_time_1, click = "onClick")
     RelativeLayout lyt_time_1;
     @ViewInject(id = R.id.lyt_time_5, click = "onClick")
@@ -56,7 +54,6 @@ public class IntervalSettingActivity extends TatansActivity implements View.OnCl
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ls_time_set);
         setTitle("时间间隔设置");
-        tv_title.setText("时间间隔设置");
         lyt_time_45.setVisibility(View.GONE);
         lyt_time_hour_1.setVisibility(View.GONE);
         lyt_time_hour_2.setVisibility(View.GONE);

@@ -5,7 +5,6 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/titlebar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -168,100 +167,90 @@
                 android:src="@drawable/img_cutoff_long" />
         </RelativeLayout>
 
-
-        <RelativeLayout
-            android:id="@+id/lyt_time_45"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_45">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_45"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+            <RelativeLayout
+                android:id="@+id/lyt_time_45"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_45">
 
-            <ImageView
-                android:id="@+id/img_tick_45"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_45"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/lyt_time_hour_1"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_hour_1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_hour_1"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/img_tick_hour_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_tick_45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/lyt_time_hour_2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_hour_2">
+            <RelativeLayout
+                android:id="@+id/lyt_time_hour_1"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_hour_1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_hour_2"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_hour_1"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/img_tick_hour_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_tick_hour_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
 
 
+            <RelativeLayout
+                android:id="@+id/lyt_time_hour_2"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_hour_2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_hour_2"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_tick_hour_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/img_cutoff_long" />
         <RelativeLayout
             android:id="@+id/lyt_custom"
             android:layout_width="match_parent"
