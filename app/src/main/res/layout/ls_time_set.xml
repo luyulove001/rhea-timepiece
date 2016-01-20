@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_1">
 
             <TextView
@@ -47,7 +47,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_5"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_5">
 
             <TextView
@@ -78,7 +78,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_10"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_10">
 
             <TextView
@@ -109,7 +109,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_15"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_15">
 
             <TextView
@@ -140,7 +140,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_30"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_30">
 
             <TextView
@@ -172,7 +172,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_45"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_45">
 
             <TextView
@@ -203,7 +203,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_hour_1"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_hour_1">
 
             <TextView
@@ -234,7 +234,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_hour_2"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/time_hour_2">
 
             <TextView
@@ -265,7 +265,7 @@
         <RelativeLayout
             android:id="@+id/lyt_custom"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/custom">
 
             <TextView

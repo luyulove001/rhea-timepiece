@@ -16,7 +16,7 @@
         <RelativeLayout
             android:id="@+id/layout_countdown_set"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/countdown_set">
 
             <TextView
@@ -56,7 +56,7 @@
         <RelativeLayout
             android:id="@+id/layout_interval_set"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/interval_set">
 
             <TextView
@@ -127,7 +127,7 @@
         <RelativeLayout
             android:id="@+id/layout_model_set"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="@dimen/height_720x1280"
             android:contentDescription="@string/model_set">
 
             <TextView

@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/lyt_ringing"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="@dimen/height_720x1280"
         android:contentDescription="音效"
         android:gravity="center_vertical"
         android:onClick="onClick">
@@ -44,7 +44,7 @@
     <RelativeLayout
         android:id="@+id/lyt_vibrate"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="@dimen/height_720x1280"
         android:contentDescription="震动"
         android:gravity="center_vertical"
         android:onClick="onClick">
@@ -77,7 +77,7 @@
     <RelativeLayout
         android:id="@+id/lyt_speak"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="@dimen/height_720x1280"
         android:contentDescription="语音"
         android:gravity="center_vertical"
         android:onClick="onClick">

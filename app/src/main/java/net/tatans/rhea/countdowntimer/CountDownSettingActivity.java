@@ -65,6 +65,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         setContentView(R.layout.ls_time_set);
         setTitle("倒计时时间设置");
         tv_title.setText("倒计时时间设置");
+        lyt_time_1.setVisibility(View.GONE);
+        lyt_time_45.setVisibility(View.GONE);
+        lyt_time_hour_2.setVisibility(View.GONE);
         preferences = new Preferences(this);
     }
 
