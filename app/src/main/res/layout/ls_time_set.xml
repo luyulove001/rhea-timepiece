@@ -5,6 +5,7 @@
     android:background="@color/background"
     android:orientation="vertical">
 
+    <include layout="@layout/titlebar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,160 +13,177 @@
         android:background="#000"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/lyt_time_1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_1">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_1"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+            <RelativeLayout
+                android:id="@+id/lyt_time_1"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_1">
 
-            <ImageView
-                android:id="@+id/img_tick_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_1"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_tick_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+
+            </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/lyt_time_5"
+            <RelativeLayout
+                android:id="@+id/lyt_time_5"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_5"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_tick_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/lyt_time_10"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_10"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_tick_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cutoff_long" />
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_5">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_5"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+            <RelativeLayout
+                android:id="@+id/lyt_time_15"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_15">
 
-            <ImageView
-                android:id="@+id/img_tick_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_15"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/img_tick_15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
 
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/lyt_time_10"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_10">
+            <RelativeLayout
+                android:id="@+id/lyt_time_20"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_20">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_10"
-                android:textColor="#fff"
-                android:textSize="20sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_20"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/img_tick_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                <ImageView
+                    android:id="@+id/img_tick_20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/lyt_time_30"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_30">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_30"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
 
-        <RelativeLayout
-            android:id="@+id/lyt_time_15"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_15">
+                <ImageView
+                    android:id="@+id/img_tick_30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
+        </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_15"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/img_tick_15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/lyt_time_30"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/time_30">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/time_30"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/img_tick_30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
-
-            <ImageView
-                android:id="@+id/img_time_30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:src="@drawable/img_cutoff_long" />
-        </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cutoff_long" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -221,6 +239,40 @@
                     android:src="@drawable/img_white_tick" />
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/lyt_time_hour_1_1"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/time_hour_1_1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/time_hour_1_1"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_tick_hour_1_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_cutoff_long" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <RelativeLayout
                 android:id="@+id/lyt_time_hour_2"
@@ -245,37 +297,32 @@
                     android:layout_marginLeft="8dp"
                     android:src="@drawable/img_white_tick" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lyt_custom"
+                android:layout_width="@dimen/width_720x1280"
+                android:layout_height="@dimen/height_720x1280"
+                android:contentDescription="@string/custom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp"
+                    android:text="@string/custom"
+                    android:textColor="#fff"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/img_tick_custom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/img_white_tick" />
+
+            </RelativeLayout>
         </LinearLayout>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/img_cutoff_long" />
-        <RelativeLayout
-            android:id="@+id/lyt_custom"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/height_720x1280"
-            android:contentDescription="@string/custom">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:text="@string/custom"
-                android:textColor="#fff"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:id="@+id/img_tick_custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
-
-        </RelativeLayout>
-
     </LinearLayout>
 
 </LinearLayout>

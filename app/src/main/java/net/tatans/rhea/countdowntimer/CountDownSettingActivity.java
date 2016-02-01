@@ -17,6 +17,8 @@ import net.tatans.rhea.utils.Preferences;
  * Created by Administrator on 2015/10/27.
  */
 public class CountDownSettingActivity extends TatansActivity implements View.OnClickListener {
+    @ViewInject(id = R.id.tv_title)
+    TextView tv_title;
     @ViewInject(id = R.id.lyt_time_1, click = "onClick")
     RelativeLayout lyt_time_1;
     @ViewInject(id = R.id.lyt_time_5, click = "onClick")
@@ -25,12 +27,16 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
     RelativeLayout lyt_time_10;
     @ViewInject(id = R.id.lyt_time_15, click = "onClick")
     RelativeLayout lyt_time_15;
+    @ViewInject(id = R.id.lyt_time_20, click = "onClick")
+    RelativeLayout lyt_time_20;
     @ViewInject(id = R.id.lyt_time_30, click = "onClick")
     RelativeLayout lyt_time_30;
     @ViewInject(id = R.id.lyt_time_45, click = "onClick")
     RelativeLayout lyt_time_45;
     @ViewInject(id = R.id.lyt_time_hour_1, click = "onClick")
     RelativeLayout lyt_time_hour_1;
+    @ViewInject(id = R.id.lyt_time_hour_1_1, click = "onClick")
+    RelativeLayout lyt_time_hour_1_1;
     @ViewInject(id = R.id.lyt_time_hour_2, click = "onClick")
     RelativeLayout lyt_time_hour_2;
     @ViewInject(id = R.id.lyt_custom, click = "onClick")
@@ -43,12 +49,16 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
     ImageView img_tick_10;
     @ViewInject(id = R.id.img_tick_15)
     ImageView img_tick_15;
+    @ViewInject(id = R.id.img_tick_20)
+    ImageView img_tick_20;
     @ViewInject(id = R.id.img_tick_30)
     ImageView img_tick_30;
     @ViewInject(id = R.id.img_tick_45)
     ImageView img_tick_45;
     @ViewInject(id = R.id.img_tick_hour_1)
     ImageView img_tick_hour_1;
+    @ViewInject(id = R.id.img_tick_hour_1_1)
+    ImageView img_tick_hour_1_1;
     @ViewInject(id = R.id.img_tick_hour_2)
     ImageView img_tick_hour_2;
     @ViewInject(id = R.id.img_tick_custom)
@@ -62,7 +72,12 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ls_time_set);
         setTitle("倒计时时间设置");
+        tv_title.setText("倒计时时间设置");
         preferences = new Preferences(this);
+        if (preferences.getBoolean("isFirst", true)) {
+            preferences.putBoolean("isFirst", false);
+            preferences.putInt("TimeLevel", 30);
+        }
     }
 
     @Override
@@ -85,6 +100,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
             case 15:
                 setVisibility(img_tick_15);
                 break;
+            case 20:
+                setVisibility(img_tick_20);
+                break;
             case 30:
                 setVisibility(img_tick_30);
                 break;
@@ -93,6 +111,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
                 break;
             case 60:
                 setVisibility(img_tick_hour_1);
+                break;
+            case 90:
+                setVisibility(img_tick_hour_1_1);
                 break;
             case 120:
                 setVisibility(img_tick_hour_2);
@@ -128,6 +149,11 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         } else {
             lyt_time_15.setContentDescription("15分钟");
         }
+        if (img_tick_20.getVisibility() == View.VISIBLE) {
+            lyt_time_20.setContentDescription("15分钟，已选中");
+        } else {
+            lyt_time_20.setContentDescription("15分钟");
+        }
         if (img_tick_30.getVisibility() == View.VISIBLE) {
             lyt_time_30.setContentDescription("30分钟，已选中");
         } else {
@@ -142,6 +168,11 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
             lyt_time_hour_1.setContentDescription("一小时，已选中");
         } else {
             lyt_time_hour_1.setContentDescription("一小时");
+        }
+        if (img_tick_hour_1_1.getVisibility() == View.VISIBLE) {
+            lyt_time_hour_1_1.setContentDescription("1.5小时，已选中");
+        } else {
+            lyt_time_hour_1_1.setContentDescription("1.5小时");
         }
         if (img_tick_hour_2.getVisibility() == View.VISIBLE) {
             lyt_time_hour_2.setContentDescription("两小时，已选中");
@@ -196,6 +227,11 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
                 preferences.putInt("TimeLevel", 15);
                 preferences.putLong("countDownTime", Const.TIME_15);
                 break;
+            case R.id.lyt_time_20:
+                setVisibility(img_tick_20);
+                preferences.putInt("TimeLevel", 20);
+                preferences.putLong("countDownTime", Const.TIME_20);
+                break;
             case R.id.lyt_time_30:
                 setVisibility(img_tick_30);
                 preferences.putInt("TimeLevel", 30);
@@ -210,6 +246,11 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
                 setVisibility(img_tick_hour_1);
                 preferences.putInt("TimeLevel", 60);
                 preferences.putLong("countDownTime", Const.TIME_HOUR_1);
+                break;
+            case R.id.lyt_time_hour_1_1:
+                setVisibility(img_tick_hour_1_1);
+                preferences.putInt("TimeLevel", 90);
+                preferences.putLong("countDownTime", Const.TIME_HOUR_1_1);
                 break;
             case R.id.lyt_time_hour_2:
                 setVisibility(img_tick_hour_2);
@@ -235,9 +276,11 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         img_tick_5.setVisibility(View.GONE);
         img_tick_10.setVisibility(View.GONE);
         img_tick_15.setVisibility(View.GONE);
+        img_tick_20.setVisibility(View.GONE);
         img_tick_30.setVisibility(View.GONE);
         img_tick_45.setVisibility(View.GONE);
         img_tick_hour_1.setVisibility(View.GONE);
+        img_tick_hour_1_1.setVisibility(View.GONE);
         img_tick_hour_2.setVisibility(View.GONE);
         img_tick_custom.setVisibility(View.GONE);
         tick.setVisibility(View.VISIBLE);

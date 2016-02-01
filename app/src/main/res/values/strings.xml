@@ -16,10 +16,12 @@
     <string name="time_5">5分钟</string>
     <string name="time_10">10分钟</string>
     <string name="time_15">15分钟</string>
+    <string name="time_20">20分钟</string>
     <string name="time_30">30分钟</string>
     <string name="time_45">45分钟</string>
-    <string name="time_hour_1">一小时</string>
-    <string name="time_hour_2">两小时</string>
+    <string name="time_hour_1">1小时</string>
+    <string name="time_hour_1_1">1.5小时</string>
+    <string name="time_hour_2">2小时</string>
     <string name="custom">自定义</string>
     <string name="custom_set">自定义时间设置</string>
     <string name="custom_time">自定义时间</string>
