@@ -3,6 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="height_720x1280">87.75dp</dimen>
+    <dimen name="height_720x1280">60dp</dimen>
     <dimen name="width_720x1280">120dp</dimen>
 </resources>

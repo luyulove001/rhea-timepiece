@@ -16,8 +16,6 @@ import net.tatans.rhea.utils.Preferences;
  * Created by Administrator on 2015/10/26.
  */
 public class SettingActivity extends TatansActivity implements View.OnClickListener {
-    @ViewInject(id = R.id.tv_title)
-    TextView tv_title;
     @ViewInject(id = R.id.layout_countdown_set, click = "onClick")
     RelativeLayout lyt_countdown_set;
     @ViewInject(id = R.id.layout_interval_set, click = "onClick")
@@ -38,7 +36,6 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.setting);
         setTitle("设置");
-        tv_title.setText("设置");
         setResult(RESULT_OK);
 
     }

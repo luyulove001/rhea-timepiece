@@ -5,8 +5,6 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/titlebar" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,6 +15,7 @@
             android:id="@+id/layout_countdown_set"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
+            android:layout_gravity="center_vertical"
             android:contentDescription="@string/countdown_set">
 
             <TextView
@@ -26,16 +25,17 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/countdown_set"
                 android:textColor="#fff"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
+
             <TextView
                 android:id="@+id/time_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/arrows_countdown"
                 android:text="00:00"
                 android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_alignTop="@+id/arrows_countdown"
-                android:layout_toStartOf="@+id/arrows_countdown" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/arrows_countdown"
@@ -48,10 +48,11 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/img_cutoff_long" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
 
         <RelativeLayout
             android:id="@+id/layout_interval_set"
@@ -66,17 +67,17 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/interval_set"
                 android:textColor="#fff"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <TextView
                 android:id="@+id/time_interval"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/arrows_interval"
                 android:text="00:00"
                 android:textColor="#fff"
-                android:textSize="20sp"
-                android:layout_alignTop="@+id/arrows_interval"
-                android:layout_toStartOf="@+id/arrows_interval" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/arrows_interval"
@@ -89,10 +90,11 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img_cutoff_long" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
 
         <!--<RelativeLayout
             android:id="@+id/layout_ringing_set"
@@ -107,7 +109,7 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/ringing_set"
                 android:textColor="#fff"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -137,7 +139,7 @@
                 android:layout_marginLeft="25dp"
                 android:text="@string/model_set"
                 android:textColor="#fff"
-                android:textSize="20sp" />
+                android:textSize="25sp" />
 
             <ImageView
                 android:layout_width="wrap_content"

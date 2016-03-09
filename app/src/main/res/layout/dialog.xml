@@ -6,8 +6,6 @@
     android:background="@color/background"
     android:orientation="vertical">
 
-    <include layout="@layout/titlebar" />
-
     <RelativeLayout
         android:id="@+id/lyt_ringing"
         android:layout_width="match_parent"
@@ -19,11 +17,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:focusable="false"
             android:text="音效"
             android:textColor="#fff"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/img_ringing"
@@ -35,11 +33,11 @@
             android:focusable="false" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:background="@drawable/img_cutoff_short" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#fff"
+        android:layout_marginLeft="17dp"/>
 
     <RelativeLayout
         android:id="@+id/lyt_vibrate"
@@ -52,11 +50,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:focusable="false"
             android:text="震动"
             android:textColor="#fff"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/img_vibrate"
@@ -68,11 +66,11 @@
             android:focusable="false" />
     </RelativeLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:background="@drawable/img_cutoff_short" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#fff"
+        android:layout_marginLeft="17dp"/>
 
     <RelativeLayout
         android:id="@+id/lyt_speak"
@@ -85,11 +83,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:focusable="false"
             android:text="语音"
             android:textColor="#fff"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <ImageView
             android:id="@+id/img_speak"

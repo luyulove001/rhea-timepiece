@@ -17,8 +17,6 @@ import net.tatans.rhea.utils.Preferences;
  * Created by Administrator on 2015/10/27.
  */
 public class CountDownSettingActivity extends TatansActivity implements View.OnClickListener {
-    @ViewInject(id = R.id.tv_title)
-    TextView tv_title;
     @ViewInject(id = R.id.lyt_time_1, click = "onClick")
     RelativeLayout lyt_time_1;
     @ViewInject(id = R.id.lyt_time_5, click = "onClick")
@@ -72,7 +70,6 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ls_time_set);
         setTitle("倒计时时间设置");
-        tv_title.setText("倒计时时间设置");
         preferences = new Preferences(this);
         if (preferences.getBoolean("isFirst", true)) {
             preferences.putBoolean("isFirst", false);
