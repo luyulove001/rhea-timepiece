@@ -44,24 +44,24 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
 
     private void initView() {
         if (preferences.getBoolean("isRinging", false)) {
-            img_ringing.setBackgroundResource(R.drawable.bg_tick);
+            img_ringing.setBackgroundResource(R.mipmap.bg_tick);
             lyt_ringing.setContentDescription("音效，开启，点按可切换");
         } else {
             lyt_ringing.setContentDescription("音效，关闭，点按可切换");
-            img_ringing.setBackgroundResource(R.drawable.bg_circle);
+            img_ringing.setBackgroundResource(R.mipmap.bg_circle);
         }
         if (preferences.getBoolean("isVibrate", false)) {
-            img_vibrate.setBackgroundResource(R.drawable.bg_tick);
+            img_vibrate.setBackgroundResource(R.mipmap.bg_tick);
             lyt_vibrate.setContentDescription("震动，开启，点按可切换");
         } else {
-            img_vibrate.setBackgroundResource(R.drawable.bg_circle);
+            img_vibrate.setBackgroundResource(R.mipmap.bg_circle);
             lyt_vibrate.setContentDescription("震动，关闭，点按可切换");
         }
         if (preferences.getBoolean("isSpeaking", false)) {
-            img_speak.setBackgroundResource(R.drawable.bg_tick);
+            img_speak.setBackgroundResource(R.mipmap.bg_tick);
             lyt_speak.setContentDescription("语音，开启，点按可切换");
         } else {
-            img_speak.setBackgroundResource(R.drawable.bg_circle);
+            img_speak.setBackgroundResource(R.mipmap.bg_circle);
             lyt_speak.setContentDescription("语音，关闭，点按可切换");
         }
     }
@@ -75,12 +75,12 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                 } else {
                     if (!preferences.getBoolean("isRinging", false)) {
                         preferences.putBoolean("isRinging", true);
-                        img_ringing.setBackgroundResource(R.drawable.bg_tick);
+                        img_ringing.setBackgroundResource(R.mipmap.bg_tick);
                         lyt_ringing.setContentDescription("音效，开启，点按可切换");
                         TatansToast.showAndCancel("音效，开启，点按可切换");
                     } else {
                         preferences.putBoolean("isRinging", false);
-                        img_ringing.setBackgroundResource(R.drawable.bg_circle);
+                        img_ringing.setBackgroundResource(R.mipmap.bg_circle);
                         lyt_ringing.setContentDescription("音效，关闭，点按可切换");
                         TatansToast.showAndCancel("音效，关闭，点按可切换");
                     }
@@ -92,12 +92,12 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                 } else {
                     if (!preferences.getBoolean("isVibrate", false)) {
                         preferences.putBoolean("isVibrate", true);
-                        img_vibrate.setBackgroundResource(R.drawable.bg_tick);
+                        img_vibrate.setBackgroundResource(R.mipmap.bg_tick);
                         lyt_vibrate.setContentDescription("震动，开启，点按可切换");
                         TatansToast.showAndCancel("震动，开启，点按可切换");
                     } else {
                         preferences.putBoolean("isVibrate", false);
-                        img_vibrate.setBackgroundResource(R.drawable.bg_circle);
+                        img_vibrate.setBackgroundResource(R.mipmap.bg_circle);
                         lyt_vibrate.setContentDescription("震动，关闭，点按可切换");
                         TatansToast.showAndCancel("震动，关闭，点按可切换");
                     }
@@ -110,12 +110,12 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
                 } else {
                     if (!preferences.getBoolean("isSpeaking", false)) {
                         preferences.putBoolean("isSpeaking", true);
-                        img_speak.setBackgroundResource(R.drawable.bg_tick);
+                        img_speak.setBackgroundResource(R.mipmap.bg_tick);
                         lyt_speak.setContentDescription("语音，开启，点按可切换");
                         TatansToast.showAndCancel("语音，开启，点按可切换");
                     } else {
                         preferences.putBoolean("isSpeaking", false);
-                        img_speak.setBackgroundResource(R.drawable.bg_circle);
+                        img_speak.setBackgroundResource(R.mipmap.bg_circle);
                         lyt_speak.setContentDescription("语音，关闭，点按可切换");
                         TatansToast.showAndCancel("语音，关闭，点按可切换");
                     }

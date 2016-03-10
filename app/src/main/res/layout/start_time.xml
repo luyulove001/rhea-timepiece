@@ -4,20 +4,25 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tv_time"
+    <LinearLayout
+        android:id="@+id/lyt_time"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_720x1280"
-        android:gravity="center"
-        android:textColor="#fff"
-        android:textSize="50sp" />
+        android:layout_height="120dp">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="50sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layout_pause_resume"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal|top"
         android:contentDescription="@string/pause"
         android:focusable="true"
         android:gravity="center">
@@ -26,11 +31,9 @@
             android:id="@+id/btn_pause_resume"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_pause"
+            android:background="@mipmap/btn_pause"
             android:focusable="false"
             android:gravity="center"
-            android:text="@string/pause"
-
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>
@@ -39,8 +42,8 @@
         android:id="@+id/layout_stop"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
-        android:layout_gravity="center"
-        android:contentDescription="@string/stop"
+        android:layout_gravity="center_horizontal|bottom"
+        android:contentDescription="结束。按钮"
         android:focusable="true"
         android:gravity="center">
 
@@ -48,10 +51,9 @@
             android:id="@+id/btn_stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_stop"
+            android:background="@mipmap/btn_stop"
             android:focusable="false"
             android:gravity="center"
-            android:text="@string/stop"
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>

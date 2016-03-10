@@ -44,7 +44,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/img_arrows_left" />
+                android:src="@mipmap/img_arrows_left" />
 
         </RelativeLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/img_arrows_left" />
+                android:src="@mipmap/img_arrows_left" />
 
         </RelativeLayout>
 
@@ -117,14 +117,14 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="1@dimen/line_height"
-                android:src="@drawable/img_arrows_left" />
+                android:src="@mipmap/img_arrows_left" />
 
         </RelativeLayout>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_cutoff_long" />-->
+            android:src="@mipmap/img_cutoff_long" />-->
 
         <RelativeLayout
             android:id="@+id/layout_model_set"
@@ -147,9 +147,15 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="12dp"
-                android:src="@drawable/img_arrows_left" />
+                android:src="@mipmap/img_arrows_left" />
 
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_height"
+            android:layout_marginLeft="17dp"
+            android:background="#fff" />
     </LinearLayout>
 
 </LinearLayout>

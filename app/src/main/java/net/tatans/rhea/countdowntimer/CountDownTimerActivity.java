@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
@@ -26,6 +27,8 @@ import net.tatans.rhea.utils.Util;
 public class CountDownTimerActivity extends TatansActivity implements View.OnClickListener {
     @ViewInject(id = R.id.tv_time)
     TextView tv_time;
+    @ViewInject(id = R.id.lyt_time, click = "onClick")
+    LinearLayout lyt_time;
     @ViewInject(id = R.id.btn_pause_resume)
     TextView btn_pause_resume;
     @ViewInject(id = R.id.layout_pause_resume, click = "onClick")
@@ -74,15 +77,16 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         super.onResume();
         if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
             setTitle("计时已暂停");
-            btn_pause_resume.setText(R.string.resume);
-            btn_pause_resume.setContentDescription("继续");
-            layout_pause_resume.setContentDescription("继续");
+            btn_pause_resume.setBackgroundResource(R.mipmap.btn_resume);
+            btn_pause_resume.setContentDescription("继续。按钮");
+            layout_pause_resume.setContentDescription("继续。按钮");
         } else {
             setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
-            btn_pause_resume.setText(R.string.pause);
-            btn_pause_resume.setContentDescription("暂停");
-            layout_pause_resume.setContentDescription("暂停");
+            btn_pause_resume.setBackgroundResource(R.mipmap.btn_pause);
+            btn_pause_resume.setContentDescription("暂停。按钮");
+            layout_pause_resume.setContentDescription("暂停。按钮");
         }
+        lyt_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
         tv_time.setContentDescription(showTime(showTimeMillis(tv_time.getText().toString())));
     }
 
@@ -121,6 +125,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             if (Const.CLOCK_TICK.equals(intent.getAction())) {
                 tv_time.setText(showTimeCount(intent.getLongExtra("countDownTime", 0)));
                 tv_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
+                lyt_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
             } else if (Const.CLOCK_STOP.equals(intent.getAction())) {
                 tv_time.setText("00:00:00");
                 handler.postDelayed(new Runnable() {
@@ -144,17 +149,19 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                     //继续计时
                     pauseTime = showTimeMillis(tv_time.getText().toString());
                     stopService(service);
-                    btn_pause_resume.setText(R.string.resume);
-                    btn_pause_resume.setContentDescription("继续");
-                    layout_pause_resume.setContentDescription("继续");
+                    btn_pause_resume.setBackgroundResource(R.mipmap.btn_resume);
+                    btn_pause_resume.setContentDescription("继续。按钮");
+                    layout_pause_resume.setContentDescription("继续。按钮");
+                    TatansToast.showAndCancel("倒计时已暂停");
                     isPause = true;
                 } else {
                     //暂停计时
                     service.putExtra("countDownTime", pauseTime);
                     startService(service);
-                    btn_pause_resume.setText(R.string.pause);
-                    btn_pause_resume.setContentDescription("暂停");
-                    layout_pause_resume.setContentDescription("暂停");
+                    btn_pause_resume.setBackgroundResource(R.mipmap.btn_pause);
+                    btn_pause_resume.setContentDescription("暂停。按钮");
+                    layout_pause_resume.setContentDescription("暂停。按钮");
+                    TatansToast.showAndCancel("倒计时继续");
                     isPause = false;
                 }
                 CountDownApplication.setPause(isPause);
@@ -168,6 +175,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                         finish();
                     }
                 }, 1000);
+                break;
+            case R.id.lyt_time:
                 break;
             default:
                 break;

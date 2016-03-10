@@ -14,7 +14,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_1"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_1">
 
             <TextView
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
 
         </RelativeLayout>
 
@@ -45,7 +45,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_5"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_5">
 
             <TextView
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
 
         </RelativeLayout>
 
@@ -76,7 +76,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_10"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_10">
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
 
         </RelativeLayout>
 
@@ -107,7 +107,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_15"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_15">
 
             <TextView
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
 
         </RelativeLayout>
 
@@ -138,7 +138,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_20"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_20">
 
             <TextView
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -168,7 +168,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_30"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_30">
 
             <TextView
@@ -186,7 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -198,7 +198,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_45"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_45">
 
             <TextView
@@ -216,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -228,7 +228,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_hour_1"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_hour_1">
 
             <TextView
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -258,7 +258,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_hour_1_1"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_hour_1_1">
 
             <TextView
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -288,7 +288,7 @@
         <RelativeLayout
             android:id="@+id/lyt_time_hour_2"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/time_hour_2">
 
             <TextView
@@ -306,7 +306,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
         </RelativeLayout>
 
         <View
@@ -318,7 +318,7 @@
         <RelativeLayout
             android:id="@+id/lyt_custom"
             android:layout_width="@dimen/width_720x1280"
-            android:layout_height="@dimen/height_720x1280"
+            android:layout_height="@dimen/list_item_height"
             android:contentDescription="@string/custom">
 
             <TextView
@@ -336,7 +336,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/img_white_tick" />
+                android:src="@mipmap/img_white_tick" />
 
         </RelativeLayout>
     </LinearLayout>

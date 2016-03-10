@@ -26,19 +26,19 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     @ViewInject(id = R.id.lyt_custom_set)
     LinearLayout lyt_custom_set;
     @ViewInject(id = R.id.tv_confirm, click = "onClick")
-    TextView tv_confirm;
+    LinearLayout tv_confirm;
     @ViewInject(id = R.id.add_one_minute, click = "onClick")
-    TextView add_one_minute;
+    LinearLayout add_one_minute;
     @ViewInject(id = R.id.minus_one_minute, click = "onClick")
-    TextView minus_one_minute;
+    LinearLayout minus_one_minute;
     @ViewInject(id = R.id.add_ten_minute, click = "onClick")
-    TextView add_ten_minute;
+    LinearLayout add_ten_minute;
     @ViewInject(id = R.id.minus_ten_minute, click = "onClick")
-    TextView minus_ten_minute;
+    LinearLayout minus_ten_minute;
     @ViewInject(id = R.id.add_one_hour, click = "onClick")
-    TextView add_one_hour;
+    LinearLayout add_one_hour;
     @ViewInject(id = R.id.minus_one_hour, click = "onClick")
-    TextView minus_one_hour;
+    LinearLayout minus_one_hour;
     private long mMillisInFuture = Const.TIME_30;
     private boolean isMinute;
     private Speaker speaker;
