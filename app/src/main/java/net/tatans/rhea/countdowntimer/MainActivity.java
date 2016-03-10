@@ -44,7 +44,8 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         preferences = new Preferences(this);
         long time = preferences.getLong("countDownTime", Const.TIME_30);
         CountDownTimerActivity cdt = new CountDownTimerActivity();
-        start_time.setContentDescription("开始计时," + cdt.showTime(time));
+        start_time.setContentDescription("开始计时," + cdt.showTime(time) + "。按钮");
+        setting.setContentDescription("设置。按钮");
         if (preferences.getInt("intervalTime") == 0){
             preferences.putInt("intervalTime", 1);
         }

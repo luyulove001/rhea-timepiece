@@ -71,11 +71,15 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_confirm:
-                preferences.putLong("countDownTime", (hour * 60 + minute) * Const.TIME_1);
-                Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
-                boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
-                sendBroadcast(boardCost);
-                finish();
+                if (hour == 0 && minute == 0) {
+                    TatansToast.showAndCancel("时间不能为0小时0分");
+                } else {
+                    preferences.putLong("countDownTime", (hour * 60 + minute) * Const.TIME_1);
+                    Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
+                    boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
+                    sendBroadcast(boardCost);
+                    finish();
+                }
                 break;
             case R.id.add_one_minute:
                 isMinute = true;

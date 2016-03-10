@@ -28,16 +28,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/bg_circle"
             android:focusable="false" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#fff"
-        android:layout_marginLeft="17dp"/>
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="17dp"
+        android:background="#fff" />
 
     <RelativeLayout
         android:id="@+id/lyt_vibrate"
@@ -61,16 +61,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/bg_circle"
             android:focusable="false" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#fff"
-        android:layout_marginLeft="17dp"/>
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="17dp"
+        android:background="#fff" />
 
     <RelativeLayout
         android:id="@+id/lyt_speak"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/bg_circle"
             android:focusable="false" />
     </RelativeLayout>

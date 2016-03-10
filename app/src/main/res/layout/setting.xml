@@ -50,7 +50,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="@dimen/line_height"
             android:layout_marginLeft="17dp"
             android:background="#fff" />
 
@@ -92,7 +92,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="@dimen/line_height"
             android:layout_marginLeft="17dp"
             android:background="#fff" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="12dp"
+                android:layout_marginRight="1@dimen/line_height"
                 android:src="@drawable/img_arrows_left" />
 
         </RelativeLayout>
