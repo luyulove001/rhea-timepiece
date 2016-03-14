@@ -144,9 +144,9 @@ public class IntervalSettingActivity extends TatansActivity implements View.OnCl
             lyt_time_15.setContentDescription("15分钟");
         }
         if (img_tick_20.getVisibility() == View.VISIBLE) {
-            lyt_time_20.setContentDescription("15分钟，已选中");
+            lyt_time_20.setContentDescription("20分钟，已选中");
         } else {
-            lyt_time_20.setContentDescription("15分钟");
+            lyt_time_20.setContentDescription("20分钟");
         }
         if (img_tick_30.getVisibility() == View.VISIBLE) {
             lyt_time_30.setContentDescription("30分钟，已选中");

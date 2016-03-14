@@ -147,9 +147,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
             lyt_time_15.setContentDescription("15分钟");
         }
         if (img_tick_20.getVisibility() == View.VISIBLE) {
-            lyt_time_20.setContentDescription("15分钟，已选中");
+            lyt_time_20.setContentDescription("20分钟，已选中");
         } else {
-            lyt_time_20.setContentDescription("15分钟");
+            lyt_time_20.setContentDescription("20分钟");
         }
         if (img_tick_30.getVisibility() == View.VISIBLE) {
             lyt_time_30.setContentDescription("30分钟，已选中");
@@ -177,9 +177,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
             lyt_time_hour_2.setContentDescription("两小时");
         }
         if (img_tick_custom.getVisibility() == View.VISIBLE) {
-            lyt_custom.setContentDescription("自定义，已选中");
+            lyt_custom.setContentDescription("自定义，已选中。按钮");
         } else {
-            lyt_custom.setContentDescription("自定义");
+            lyt_custom.setContentDescription("自定义。按钮");
         }
     }
 
