@@ -10,15 +10,21 @@
         android:id="@+id/start_time"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
+        android:layout_marginLeft="18dp"
         android:contentDescription="@string/start"
         android:focusable="true"
         android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@mipmap/img_start" />
 
         <TextView
             android:id="@+id/tv_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18dp"
             android:focusable="false"
             android:text="@string/start"
             android:textColor="#fff"
@@ -35,15 +41,22 @@
         android:id="@+id/setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
+        android:layout_marginLeft="18dp"
         android:contentDescription="@string/setting"
         android:focusable="true"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@mipmap/img_set" />
 
         <TextView
             android:id="@+id/tv_setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="18dp"
             android:focusable="false"
             android:text="@string/setting"
             android:textColor="#fff"
