@@ -39,6 +39,8 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     LinearLayout add_one_hour;
     @ViewInject(id = R.id.minus_one_hour, click = "onClick")
     LinearLayout minus_one_hour;
+    @ViewInject(id = R.id.tv_custom_time_set, click = "onClick")
+    TextView tv_custom_time_set;
     private long mMillisInFuture = Const.TIME_30;
     private boolean isMinute;
     private Speaker speaker;
@@ -57,9 +59,9 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     private void initView() {
         speaker = Speaker.getInstance(this);
         preferences = new Preferences(this);
-        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
-        hour = (int) (mMillisInFuture / Const.TIME_1 / 60);
-        minute = (int) (mMillisInFuture / Const.TIME_1 % 60);
+//        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
+//        hour = (int) (mMillisInFuture / Const.TIME_1 / 60);
+//        minute = (int) (mMillisInFuture / Const.TIME_1 % 60);
     }
 
     @Override
@@ -107,6 +109,7 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
                 break;
         }
         TatansToast.showAndCancel(hour + "小时" + minute + "分");
+        tv_custom_time_set.setText(hour + "小时" + minute + "分");
     }
 
     /**
