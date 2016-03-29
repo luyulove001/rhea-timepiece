@@ -7,10 +7,13 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.util.Log;
 
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.utils.Preferences;
+
+import bean.CountDownBean;
 
 /**
  * Created by Administrator on 2015/11/24.
@@ -26,6 +29,7 @@ public class CountDownService extends Service {
     private Handler handler = new Handler();
     private int remainder;
     private Intent broadcast;
+    private CountDownBean bean;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -36,16 +40,20 @@ public class CountDownService extends Service {
     public void onCreate() {
         super.onCreate();
         preferences = new Preferences(this);
-        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
+//        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
+//        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent == null)
             return Service.START_NOT_STICKY;
-        mMillisInFuture = intent.getLongExtra("countDownTime", mMillisInFuture);
+        bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
+        remainder = (int) ((bean.getCountDownTime() * Const.TIME_1 / 1000) % (bean.getIntervalTime() * 60));
+        mMillisInFuture = intent.getLongExtra("countDownTime", bean.getCountDownTime() * Const.TIME_1);
+        Log.e("antony", "bean.getCountDownTime():" + bean.getCountDownTime() + "---" + mMillisInFuture +
+                "---" + remainder + "--- bean.getIntervalTime():" + bean.getIntervalTime() + "---bean.getCountDownTime():" + bean.getCountDownTime());
         countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
         countDownTimer.start();
         broadcast = new Intent();
@@ -86,7 +94,7 @@ public class CountDownService extends Service {
             broadcast.setAction(Const.CLOCK_TICK);
             broadcast.putExtra("countDownTime", millisUntilFinished);
             sendBroadcast(broadcast);
-            if ((millisUntilFinished / 1000) % (preferences.getInt("intervalTime") * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {
+            if ((millisUntilFinished / 1000) % (bean.getIntervalTime() * 60) == remainder && (millisUntilFinished / 1000) != 5 * 60 && (millisUntilFinished / 1000) != 60) {
                 model(millisUntilFinished, false);
             }
             if ((millisUntilFinished / 1000) == 5 * 60 || (millisUntilFinished / 1000) == 60 || (millisUntilFinished / 1000) == 30) {
@@ -164,7 +172,7 @@ public class CountDownService extends Service {
     }
 
     private void model(long millisUntilFinished, boolean isStop) {
-        if (preferences.getBoolean("isRinging", true)) {
+        if (bean.isRinging()) {
             if (isStop) {
                 CountDownApplication.playMusic(R.raw.terminationn);
                 handler.postDelayed(new Runnable() {
@@ -184,13 +192,13 @@ public class CountDownService extends Service {
             }
         }
 
-        if (preferences.getBoolean("isSpeaking", true)) {
+        if (bean.isSpeaking()) {
             if (isStop)
                 CountDownApplication.getSpeaker().speech("倒计时结束");
             else
                 CountDownApplication.getSpeaker().speech("还剩" + showTime(millisUntilFinished));
         }
-        if (preferences.getBoolean("isVibrate", true)) {
+        if (bean.isVibrate()) {
             if (isStop && !preferences.getBoolean("isSpeaking", true) && !preferences.getBoolean("isRinging", true))
                 vibrator.vibrate(3000);           //重复两次上面的pattern 如果只想震动一次，index设为-1
             else

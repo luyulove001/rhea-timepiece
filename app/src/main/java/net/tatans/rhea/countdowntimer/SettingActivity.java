@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
+
+import bean.CountDownBean;
 
 /**
  * Created by Administrator on 2015/10/26.
@@ -26,7 +30,10 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
     TextView time_countdown;
     @ViewInject(id = R.id.time_interval)
     TextView time_interval;
-
+    @ViewInject(id = R.id.lyt_confirm, click = "onClick")
+    LinearLayout lyt_confirm;
+    private CountDownBean bean;
+    private TatansDb tatansDb;
     private CountDownTimerActivity c;
     private Preferences p;
 
@@ -37,7 +44,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         setContentView(R.layout.setting);
         setTitle("设置");
         setResult(RESULT_OK);
-
+        tatansDb = TatansDb.create(Const.CountDown_DB);
     }
 
     @Override
@@ -74,6 +81,18 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
             case R.id.layout_model_set:
                 intent.setClass(this, ModelActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.lyt_confirm:
+                bean = new CountDownBean();
+                bean.setIntervalTime(p.getInt("intervalTime"));
+                bean.setCountDownTime((int) (p.getLong("countDownTime", Const.TIME_30) / Const.TIME_1));
+                bean.setIsVibrate(p.getBoolean("isVibrate", true));
+                bean.setIsSpeaking(p.getBoolean("isSpeaking", true));
+                bean.setIsRinging(p.getBoolean("isRinging", true));
+                bean.setId(tatansDb.findAll(CountDownBean.class).size());
+                tatansDb.save(bean);
+                p.putBoolean("isFirst", true);
+                finish();
                 break;
             default:
                 break;

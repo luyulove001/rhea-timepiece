@@ -158,4 +158,25 @@
             android:background="#fff" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/lyt_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_720x1280"
+            android:layout_marginLeft="25dp"
+            android:gravity="center_vertical"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="17dp"
+        android:background="#fff" />
+
 </LinearLayout>

@@ -76,9 +76,9 @@ public class MainActivity extends TatansActivity implements OnClickListener {
 
     private void initListView() {
         al_countDown = tdb.findAll(CountDownBean.class);
-//        Log.e("antony", al_countDown.get(0).toString());
         countDownAdapter = new CountDownAdapter(MainActivity.this, al_countDown);
         lv_countdown_time.setAdapter(countDownAdapter);
+        Log.e("antony", al_countDown.size() + "");
     }
 
     /**
@@ -96,6 +96,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             countDownBean.setIsVibrate(true);
             tdb.save(countDownBean);
         }
+        Log.e("antony", "-----------------" );
     }
 
     private void isServiceAlive(){

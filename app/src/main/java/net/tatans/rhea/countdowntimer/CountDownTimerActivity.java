@@ -64,7 +64,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         CountDownBean bean = (CountDownBean)getIntent().getSerializableExtra("countDown_scheme");
         mMillisInFuture = bean.getCountDownTime() * Const.TIME_1;
         service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
-        service.putExtra("countDownTime", mMillisInFuture);
+        service.putExtra("countDown_scheme", bean);
         if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE))
             startService(service);
         tv_time.setText(showTimeCount(mMillisInFuture));

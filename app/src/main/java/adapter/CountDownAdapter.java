@@ -36,7 +36,6 @@ public class CountDownAdapter extends BaseAdapter {
         this.al_countDown = al_countDown;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
-        Log.e("antony", al_countDown.get(0).toString());
     }
 
     @Override
