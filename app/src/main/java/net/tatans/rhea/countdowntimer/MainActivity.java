@@ -118,7 +118,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.setting:
-                intent.setClass(this, SettingActivity.class);
+                intent.setClass(this, DeleteActivity.class);
                 startActivity(intent);
                 break;
             default:

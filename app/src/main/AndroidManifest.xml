@@ -30,6 +30,10 @@
             android:screenOrientation="portrait"
             android:label="@string/countdown" />
         <activity
+            android:name=".DeleteActivity"
+            android:screenOrientation="portrait"
+            android:label="删除倒计时" />
+        <activity
             android:name=".SettingActivity"
             android:label="@string/setting"
             android:launchMode="singleTask"
