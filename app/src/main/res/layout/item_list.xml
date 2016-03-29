@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_720x1280"
+    android:background="@color/black"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lyt_countdown_time"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/icon_time"
+            android:layout_width="@dimen/default_icon_width"
+            android:layout_height="@dimen/default_icon_height"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/icon_time" />
+
+        <TextView
+            android:id="@+id/tv_countdown_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="18dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:layout_marginLeft="17dp"
+        android:background="@color/white" />
+</LinearLayout>

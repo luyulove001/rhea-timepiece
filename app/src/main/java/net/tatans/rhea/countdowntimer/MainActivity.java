@@ -6,13 +6,21 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
 import net.tatans.rhea.utils.Util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.CountDownAdapter;
+import bean.CountDownBean;
 
 
 public class MainActivity extends TatansActivity implements OnClickListener {
@@ -20,7 +28,11 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     LinearLayout start_time;
     @ViewInject(id = R.id.setting, click = "onClick")
     LinearLayout setting;
+    @ViewInject(id = R.id.lv_countdown_time)
+    ListView lv_countdown_time;
     private Preferences preferences;
+    private List<CountDownBean> al_countDown = new ArrayList<>();
+    private CountDownAdapter countDownAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +66,25 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             preferences.putBoolean("isVibrate", true);
             preferences.putBoolean("isSpeaking", true);
             preferences.putBoolean("isFirst", true);
+            initCountDownData();
         }
+    }
+
+    private void initCountDownData() {
+        TatansDb tdb = TatansDb.create(Const.CountDown_DB);
+        CountDownBean countDownBean = new CountDownBean();
+        int[] countDownTime = new int[] {30, 60, 120};
+        for (int i = 0; i < countDownTime.length; i++) {
+            countDownBean.setId(i);
+            countDownBean.setCountDownTime(countDownTime[i]);
+            countDownBean.setIntervalTime(1);
+            countDownBean.setIsRinging(true);
+            countDownBean.setIsSpeaking(true);
+            countDownBean.setIsVibrate(true);
+            tdb.save(countDownBean);
+        }
+        al_countDown = tdb.findAll(CountDownBean.class);
+//        countDownAdapter = new CountDownAdapter(this);
     }
 
     private void isServiceAlive(){

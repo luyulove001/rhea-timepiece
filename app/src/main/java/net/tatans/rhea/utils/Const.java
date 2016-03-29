@@ -22,4 +22,5 @@ public class Const {
     public static final String CLOCK_PAUSE = "net.tatans.rhea.lock.countDownTime.pause";
     public static final String CLOCK_RESTART = "net.tatans.rhea.lock.countDownTime.restart";
     public static final String COUNTDOWN_SERVICE = "net.tatans.rhea.countdowntimer.CountDownService";
+    public static final String CountDown_DB = "CountDown";
 }
