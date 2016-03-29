@@ -2,11 +2,13 @@ package bean;
 
 import net.tatans.coeus.annotation.sqlite.Table;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/3/24.
  */
 @Table(name = "CountDownTime")
-public class CountDownBean {
+public class CountDownBean implements Serializable {
     private int id;
     private int countDownTime;
     private int intervalTime;
@@ -60,5 +62,17 @@ public class CountDownBean {
 
     public void setIsVibrate(boolean isVibrate) {
         this.isVibrate = isVibrate;
+    }
+
+    @Override
+    public String toString() {
+        return "CountDownBean{" +
+                "id=" + id +
+                ", countDownTime=" + countDownTime +
+                ", intervalTime=" + intervalTime +
+                ", isSpeaking=" + isSpeaking +
+                ", isRinging=" + isRinging +
+                ", isVibrate=" + isVibrate +
+                '}';
     }
 }

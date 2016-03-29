@@ -10,7 +10,7 @@
         android:id="@+id/start_time"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
-        android:contentDescription="@string/start"
+        android:contentDescription="@string/add_countdown_scheme"
         android:focusable="true"
         android:gravity="center_vertical">
 
@@ -18,7 +18,7 @@
             android:layout_width="@dimen/default_icon_width"
             android:layout_height="@dimen/default_icon_height"
             android:layout_marginLeft="18dp"
-            android:background="@mipmap/img_start" />
+            android:background="@mipmap/icon_add" />
 
         <TextView
             android:id="@+id/tv_start"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:focusable="false"
-            android:text="@string/start"
+            android:text="@string/add_countdown_scheme"
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>
@@ -41,7 +41,7 @@
         android:id="@+id/setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
-        android:contentDescription="@string/setting"
+        android:contentDescription="@string/del_countdown_scheme"
         android:focusable="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -50,7 +50,7 @@
             android:layout_width="@dimen/default_icon_width"
             android:layout_height="@dimen/default_icon_height"
             android:layout_marginLeft="18dp"
-            android:background="@mipmap/img_set" />
+            android:background="@mipmap/icon_delete" />
 
         <TextView
             android:id="@+id/tv_setting"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:focusable="false"
-            android:text="@string/setting"
+            android:text="@string/del_countdown_scheme"
             android:textColor="#fff"
             android:textSize="25sp" />
     </LinearLayout>

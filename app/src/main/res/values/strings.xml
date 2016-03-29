@@ -25,4 +25,6 @@
     <string name="custom">自定义</string>
     <string name="custom_set">自定义时间设置</string>
     <string name="custom_time">自定义时间</string>
+    <string name="add_countdown_scheme">添加倒计时</string>
+    <string name="del_countdown_scheme">删除倒计时</string>
 </resources>

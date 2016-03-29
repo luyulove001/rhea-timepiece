@@ -20,6 +20,8 @@ import net.tatans.rhea.utils.Const;
 import net.tatans.rhea.utils.Preferences;
 import net.tatans.rhea.utils.Util;
 
+import bean.CountDownBean;
+
 
 /**
  * Created by Administrator on 2015/10/26.
@@ -39,7 +41,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     private MyBroadcastReceiver myBroadcastReceiver;//自定义倒计时类
     private boolean isPause = false, isStop = false;
     private long pauseTime;//保存暂停时的剩余时间
-    private long mMillisInFuture = Const.TIME_30;
+    private long mMillisInFuture;
     private Preferences preferences;
     private Handler handler = new Handler();
     private PowerManager.WakeLock wakeLock;//唤醒锁
@@ -57,8 +59,10 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      * 初始化数据
      */
     private void initData() {
-        preferences = new Preferences(this);
-        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
+//        preferences = new Preferences(this);
+//        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
+        CountDownBean bean = (CountDownBean)getIntent().getSerializableExtra("countDown_scheme");
+        mMillisInFuture = bean.getCountDownTime() * Const.TIME_1;
         service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         service.putExtra("countDownTime", mMillisInFuture);
         if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE))

@@ -2,6 +2,7 @@ package net.tatans.rhea.countdowntimer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -33,6 +34,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     private Preferences preferences;
     private List<CountDownBean> al_countDown = new ArrayList<>();
     private CountDownAdapter countDownAdapter;
+    private TatansDb tdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
      * 计算计时时间
      */
     private void initView() {
+        tdb = TatansDb.create(Const.CountDown_DB);
         preferences = new Preferences(this);
         long time = preferences.getLong("countDownTime", Const.TIME_30);
         CountDownTimerActivity cdt = new CountDownTimerActivity();
@@ -68,10 +71,20 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             preferences.putBoolean("isFirst", true);
             initCountDownData();
         }
+        initListView();
     }
 
+    private void initListView() {
+        al_countDown = tdb.findAll(CountDownBean.class);
+//        Log.e("antony", al_countDown.get(0).toString());
+        countDownAdapter = new CountDownAdapter(MainActivity.this, al_countDown);
+        lv_countdown_time.setAdapter(countDownAdapter);
+    }
+
+    /**
+     * 首次进入应用时默认添加30分60分90分
+     */
     private void initCountDownData() {
-        TatansDb tdb = TatansDb.create(Const.CountDown_DB);
         CountDownBean countDownBean = new CountDownBean();
         int[] countDownTime = new int[] {30, 60, 120};
         for (int i = 0; i < countDownTime.length; i++) {
@@ -83,8 +96,6 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             countDownBean.setIsVibrate(true);
             tdb.save(countDownBean);
         }
-        al_countDown = tdb.findAll(CountDownBean.class);
-//        countDownAdapter = new CountDownAdapter(this);
     }
 
     private void isServiceAlive(){
@@ -99,8 +110,10 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.start_time:
-                TatansToast.showAndCancel("计时开始");
-                intent.setClass(this, CountDownTimerActivity.class);
+//                TatansToast.showAndCancel("计时开始");
+//                intent.setClass(this, CountDownTimerActivity.class);
+//                startActivity(intent);
+                intent.setClass(this, SettingActivity.class);
                 startActivity(intent);
                 break;
             case R.id.setting:

@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/lyt_countdown_time"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/height_720x1280"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -22,8 +22,10 @@
         <TextView
             android:id="@+id/tv_countdown_time"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="18dp" />
+            android:layout_height="@dimen/height_720x1280"
+            android:layout_marginLeft="18dp"
+            android:gravity="center_vertical"
+            android:textSize="25sp" />
     </LinearLayout>
 
     <View
