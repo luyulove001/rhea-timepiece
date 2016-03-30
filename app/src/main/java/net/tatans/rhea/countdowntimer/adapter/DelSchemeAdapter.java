@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import net.tatans.coeus.network.tools.TatansApplication;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.rhea.countdowntimer.CountDownTimerActivity;
@@ -81,6 +83,7 @@ public class DelSchemeAdapter extends BaseAdapter {
             public boolean onHover(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_HOVER_ENTER:
+                        interrupt();
                         TatansToast.showAndCancel(al_countDown.get(position).getCountDownTime() +
                 "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下来删除");
                 }
@@ -91,6 +94,17 @@ public class DelSchemeAdapter extends BaseAdapter {
         convertView.setOnClickListener(new OnClickListenerImpl(position));
         return convertView;
     }
+
+    private void interrupt() {
+        try {
+            AccessibilityManager accessibilityManager = (AccessibilityManager) TatansApplication.getContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+            accessibilityManager.interrupt();
+            TatansToast.cancel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private class OnClickListenerImpl implements View.OnClickListener {
         private int mPosition;
 
