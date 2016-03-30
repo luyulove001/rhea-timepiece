@@ -1,4 +1,4 @@
-package net.tatans.rhea.utils;
+package net.tatans.rhea.countdowntimer.utils;
 
 /**
  * Created by Administrator on 2015/10/28.

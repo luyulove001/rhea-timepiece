@@ -11,10 +11,10 @@ import android.widget.TextView;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
-import net.tatans.rhea.utils.Const;
-import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
 
-import bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 /**
  * Created by Administrator on 2015/10/26.

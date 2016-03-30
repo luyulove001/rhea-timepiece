@@ -1,4 +1,4 @@
-package bean;
+package net.tatans.rhea.countdowntimer.bean;
 
 import net.tatans.coeus.annotation.sqlite.Table;
 

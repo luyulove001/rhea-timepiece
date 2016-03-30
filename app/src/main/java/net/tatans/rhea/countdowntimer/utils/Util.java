@@ -1,4 +1,4 @@
-package net.tatans.rhea.utils;
+package net.tatans.rhea.countdowntimer.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;

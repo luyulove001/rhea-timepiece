@@ -1,4 +1,4 @@
-package net.tatans.rhea.utils;
+package net.tatans.rhea.countdowntimer.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -6,11 +6,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.view.ViewInject;
-import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
 
 /**
  * Created by Administrator on 2015/10/27.

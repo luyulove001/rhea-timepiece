@@ -9,11 +9,11 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.util.Log;
 
-import net.tatans.rhea.utils.Const;
-import net.tatans.rhea.utils.CountDownTimeWakeLock;
-import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.CountDownTimeWakeLock;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
 
-import bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 /**
  * Created by Administrator on 2015/11/24.

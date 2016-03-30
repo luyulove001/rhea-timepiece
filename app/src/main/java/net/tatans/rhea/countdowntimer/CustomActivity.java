@@ -2,22 +2,17 @@ package net.tatans.rhea.countdowntimer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.accessibility.AccessibilityEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
-import net.tatans.rhea.utils.Const;
-import net.tatans.rhea.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
 
 /**
  * Created by Administrator on 2015/10/28.

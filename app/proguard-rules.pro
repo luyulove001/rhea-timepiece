@@ -15,4 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
-
+-keepclassmembers  public class net.tatans.rhea.countdowntimer.bean.CountDownBean {
+   *;
+}
+-dontwarn com.sun.kvem.environment.Obfuscator

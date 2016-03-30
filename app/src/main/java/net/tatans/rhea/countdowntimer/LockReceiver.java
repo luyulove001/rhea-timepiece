@@ -4,11 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import net.tatans.coeus.network.tools.TatansLog;
-import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.utils.Const;
-import net.tatans.rhea.utils.Preferences;
-import net.tatans.rhea.utils.Util;
+import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Util;
 
 /**
  * Created by Administrator on 2015/12/18.

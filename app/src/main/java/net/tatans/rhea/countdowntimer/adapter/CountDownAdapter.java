@@ -1,8 +1,7 @@
-package adapter;
+package net.tatans.rhea.countdowntimer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,12 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.rhea.countdowntimer.CountDownTimerActivity;
 import net.tatans.rhea.countdowntimer.R;
 
 import java.util.List;
 
-import bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 /**
  * Created by Administrator on 2016/3/24.
@@ -69,6 +67,8 @@ public class CountDownAdapter extends BaseAdapter {
         }
         holder.icon_time.setBackgroundResource(R.mipmap.icon_time);
         holder.tv_countdown_time.setText(al_countDown.get(position).getCountDownTime() + "分钟");
+        holder.tv_countdown_time.setContentDescription(al_countDown.get(position).getCountDownTime() +
+                "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下开始倒计时");
         holder.tv_countdown_time.setTextColor(mContext.getResources().getColor(R.color.white));
         convertView.setOnClickListener(new OnClickListenerImpl(position));
         return convertView;

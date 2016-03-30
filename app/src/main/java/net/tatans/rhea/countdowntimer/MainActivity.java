@@ -11,17 +11,16 @@ import android.widget.ListView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
-import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
-import net.tatans.rhea.utils.Const;
-import net.tatans.rhea.utils.Preferences;
-import net.tatans.rhea.utils.Util;
+import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Preferences;
+import net.tatans.rhea.countdowntimer.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import adapter.CountDownAdapter;
-import bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.adapter.CountDownAdapter;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 
 public class MainActivity extends TatansActivity implements OnClickListener {
@@ -59,8 +58,8 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         preferences = new Preferences(this);
         long time = preferences.getLong("countDownTime", Const.TIME_30);
         CountDownTimerActivity cdt = new CountDownTimerActivity();
-        start_time.setContentDescription("开始计时," + cdt.showTime(time) + "。按钮");
-        setting.setContentDescription("设置。按钮");
+        start_time.setContentDescription("添加倒计时。按钮");
+        setting.setContentDescription("删除倒计时。按钮");
         if (preferences.getInt("intervalTime") == 0){
             preferences.putInt("intervalTime", 1);
         }
@@ -90,7 +89,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         for (int i = 0; i < countDownTime.length; i++) {
             countDownBean.setId(i);
             countDownBean.setCountDownTime(countDownTime[i]);
-            countDownBean.setIntervalTime(1);
+            countDownBean.setIntervalTime(30);
             countDownBean.setIsRinging(true);
             countDownBean.setIsSpeaking(true);
             countDownBean.setIsVibrate(true);
