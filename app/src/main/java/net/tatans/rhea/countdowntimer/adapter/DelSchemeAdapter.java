@@ -116,8 +116,9 @@ public class DelSchemeAdapter extends BaseAdapter {
         public void onClick(View v) {
             bean = al_countDown.get(mPosition);
             tdb.delete(bean);
-            TatansToast.showShort("删除成功");
             al_countDown = tdb.findAll(CountDownBean.class);
+            interrupt();
+            TatansToast.showShort("删除成功");
             notifyDataSetChanged();
         }
     }
