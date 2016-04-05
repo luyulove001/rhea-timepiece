@@ -16,7 +16,7 @@ android {
         minSdkVersion 17
         targetSdkVersion 22
         versionCode version_code.toInteger()
-        versionName "2."+version_code
+        versionName "2.0."+version_code
     }
     signingConfigs {
         releaseConfig {
