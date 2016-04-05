@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.tatans.rhea.countdowntimer"
     android:versionCode="1512311333"
-    android:versionName="1.0.1512311333">
+    android:versionName="2.0.1512311333">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
