@@ -56,8 +56,8 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     private void initView() {
         tdb = TatansDb.create(Const.CountDown_DB);
         preferences = new Preferences(this);
-        long time = preferences.getLong("countDownTime", Const.TIME_30);
-        CountDownTimerActivity cdt = new CountDownTimerActivity();
+//        long time = preferences.getLong("countDownTime", Const.TIME_30);
+//        CountDownTimerActivity cdt = new CountDownTimerActivity();
         start_time.setContentDescription("添加倒计时。按钮");
         setting.setContentDescription("删除倒计时。按钮");
         if (preferences.getInt("intervalTime") == 0){

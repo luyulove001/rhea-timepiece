@@ -52,6 +52,12 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.start_time);
+        myBroadcastReceiver = new MyBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Const.CLOCK_TICK);
+        intentFilter.addAction(Const.CLOCK_STOP);
+        registerReceiver(myBroadcastReceiver, intentFilter);
+        service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         initData();
     }
 
@@ -62,17 +68,12 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
 //        preferences = new Preferences(this);
 //        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         CountDownBean bean = (CountDownBean)getIntent().getSerializableExtra("countDown_scheme");
+        if (bean == null) return;
         mMillisInFuture = bean.getCountDownTime() * Const.TIME_1;
-        service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         service.putExtra("countDown_scheme", bean);
         if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE))
             startService(service);
         tv_time.setText(showTimeCount(mMillisInFuture));
-        myBroadcastReceiver = new MyBroadcastReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Const.CLOCK_TICK);
-        intentFilter.addAction(Const.CLOCK_STOP);
-        registerReceiver(myBroadcastReceiver, intentFilter);
         acquireWakeLock();
     }
 

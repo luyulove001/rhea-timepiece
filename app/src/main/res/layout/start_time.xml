@@ -10,6 +10,7 @@
         android:layout_height="120dp">
         <TextView
             android:id="@+id/tv_time"
+            android:text="00:00:00"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_720x1280"
             android:layout_marginTop="40dp"
