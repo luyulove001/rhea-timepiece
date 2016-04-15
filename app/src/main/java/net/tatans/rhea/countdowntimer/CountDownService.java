@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.Vibrator;
 import android.util.Log;
 
+import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
@@ -30,6 +31,7 @@ public class CountDownService extends Service {
     private int remainder;
     private Intent broadcast;
     private CountDownBean bean;
+    private TatansDb tdb;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -42,6 +44,7 @@ public class CountDownService extends Service {
         preferences = new Preferences(this);
 //        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        tdb = TatansDb.create(Const.CountDown_DB);
 //        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
     }
 
@@ -50,6 +53,7 @@ public class CountDownService extends Service {
         if (intent == null)
             return Service.START_NOT_STICKY;
         bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
+        if (bean == null) bean = tdb.findById(0, CountDownBean.class);
         remainder = (int) ((bean.getCountDownTime() * Const.TIME_1 / 1000) % (bean.getIntervalTime() * 60));
         mMillisInFuture = intent.getLongExtra("countDownTime", bean.getCountDownTime() * Const.TIME_1);
         Log.e("antony", "bean.getCountDownTime():" + bean.getCountDownTime() + "---" + mMillisInFuture +
@@ -91,6 +95,7 @@ public class CountDownService extends Service {
          */
         @Override
         public void onTick(long millisUntilFinished) {
+            if (broadcast == null) broadcast = new Intent();
             broadcast.setAction(Const.CLOCK_TICK);
             broadcast.putExtra("countDownTime", millisUntilFinished);
             sendBroadcast(broadcast);
@@ -108,6 +113,7 @@ public class CountDownService extends Service {
         @Override
         public void onFinish() {
             model(0, true);
+            if (broadcast == null) broadcast = new Intent();
             broadcast.setAction(Const.CLOCK_STOP);
             sendBroadcast(broadcast);
         }

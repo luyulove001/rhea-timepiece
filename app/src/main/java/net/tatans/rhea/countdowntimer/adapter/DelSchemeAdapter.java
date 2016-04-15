@@ -114,11 +114,12 @@ public class DelSchemeAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View v) {
+            if (al_countDown.size() == 0) return;
             bean = al_countDown.get(mPosition);
             tdb.delete(bean);
             al_countDown = tdb.findAll(CountDownBean.class);
             interrupt();
-            TatansToast.showShort("删除成功");
+            TatansToast.showAndCancel("删除成功");
             notifyDataSetChanged();
         }
     }
