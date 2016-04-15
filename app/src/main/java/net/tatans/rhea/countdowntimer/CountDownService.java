@@ -10,11 +10,10 @@ import android.os.Vibrator;
 import android.util.Log;
 
 import net.tatans.coeus.network.tools.TatansDb;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
-
-import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 /**
  * Created by Administrator on 2015/11/24.
@@ -54,14 +53,17 @@ public class CountDownService extends Service {
             return Service.START_NOT_STICKY;
         bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
         if (bean == null) bean = tdb.findById(0, CountDownBean.class);
-        remainder = (int) ((bean.getCountDownTime() * Const.TIME_1 / 1000) % (bean.getIntervalTime() * 60));
-        mMillisInFuture = intent.getLongExtra("countDownTime", bean.getCountDownTime() * Const.TIME_1);
-        Log.e("antony", "bean.getCountDownTime():" + bean.getCountDownTime() + "---" + mMillisInFuture +
-                "---" + remainder + "--- bean.getIntervalTime():" + bean.getIntervalTime() + "---bean.getCountDownTime():" + bean.getCountDownTime());
-        countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
-        countDownTimer.start();
-        broadcast = new Intent();
-        CountDownTimeWakeLock.acquireCpuWakeLock(CountDownApplication.getInstance());
+        try {
+            remainder = (int) ((bean.getCountDownTime() * Const.TIME_1 / 1000) % (bean.getIntervalTime() * 60));
+            mMillisInFuture = intent.getLongExtra("countDownTime", bean.getCountDownTime() * Const.TIME_1);
+            Log.e("antony", "bean.getCountDownTime():" + bean.getCountDownTime() + "---" + mMillisInFuture +
+                    "---" + remainder + "--- bean.getIntervalTime():" + bean.getIntervalTime() + "---bean.getCountDownTime():" + bean.getCountDownTime());
+            countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
+            countDownTimer.start();
+            broadcast = new Intent();
+            CountDownTimeWakeLock.acquireCpuWakeLock(CountDownApplication.getInstance());
+        } catch (Exception e) {
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 

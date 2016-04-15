@@ -58,9 +58,12 @@ public class CountDownApplication extends TatansApplication {
     }
 
     public static void stopPlay() {
-        if (mediaPlayer.isPlaying()) {
-            mediaPlayer.stop();
-            mediaPlayer.release();
+        try {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        } catch (Exception e) {
         }
     }
 }
