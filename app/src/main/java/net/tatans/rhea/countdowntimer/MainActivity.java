@@ -8,19 +8,19 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.adapter.CountDownAdapter;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 import net.tatans.rhea.countdowntimer.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import net.tatans.rhea.countdowntimer.adapter.CountDownAdapter;
-import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 
 public class MainActivity extends TatansActivity implements OnClickListener {
@@ -30,6 +30,8 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     LinearLayout setting;
     @ViewInject(id = R.id.lv_countdown_time)
     ListView lv_countdown_time;
+    @ViewInject(id = R.id.empty_main, click = "onClick")
+    TextView tv_empty;
     private Preferences preferences;
     private List<CountDownBean> al_countDown = new ArrayList<>();
     private CountDownAdapter countDownAdapter;
@@ -77,7 +79,8 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         al_countDown = tdb.findAll(CountDownBean.class);
         countDownAdapter = new CountDownAdapter(MainActivity.this, al_countDown);
         lv_countdown_time.setAdapter(countDownAdapter);
-        Log.e("antony", al_countDown.size() + "");
+        if (al_countDown.size() == 0) tv_empty.setContentDescription("没有倒计时");
+        else tv_empty.setContentDescription("");
     }
 
     /**

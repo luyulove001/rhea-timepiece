@@ -3,26 +3,30 @@ package net.tatans.rhea.countdowntimer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
+import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansToast;
+import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.countdowntimer.adapter.DelSchemeAdapter;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2016/3/29.
  */
-public class DeleteActivity extends TatansActivity implements AdapterView.OnItemClickListener {
+public class DeleteActivity extends TatansActivity implements AdapterView.OnItemClickListener, OnClickListener {
     ListView lv_del_countdown;
+    @ViewInject(id = R.id.empty_del, click = "onClick")
+    TextView tv_empty;
     private CountDownBean bean;
     private TatansDb tdb;
     private List<CountDownBean> al_countDown;
@@ -35,7 +39,8 @@ public class DeleteActivity extends TatansActivity implements AdapterView.OnItem
         al_countDown = tdb.findAll(CountDownBean.class);
         lv_del_countdown = (ListView) findViewById(R.id.lv_del_countdown);
         lv_del_countdown.setAdapter(new DelSchemeAdapter(DeleteActivity.this, al_countDown));
-//        lv_del_countdown.setOnItemClickListener(this);
+        if (al_countDown.size() == 0) tv_empty.setText("没有倒计时");
+        lv_del_countdown.setOnItemClickListener(this);
     }
 
     @Override
@@ -49,7 +54,15 @@ public class DeleteActivity extends TatansActivity implements AdapterView.OnItem
         bean = al_countDown.get(position);
         tdb.delete(bean);
         al_countDown = tdb.findAll(CountDownBean.class);
-        TatansToast.showShort("删除成功");
+        Util.interrupt();
+        TatansToast.showAndCancel("删除成功");
         lv_del_countdown.setAdapter(new DelSchemeAdapter(DeleteActivity.this, al_countDown));
+        if (al_countDown.size() == 0) tv_empty.setText("没有倒计时");
+        else tv_empty.setText("");
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (al_countDown.size() == 0) TatansToast.showAndCancel("没有倒计时");
     }
 }

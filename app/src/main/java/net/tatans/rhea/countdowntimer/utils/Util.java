@@ -2,6 +2,10 @@ package net.tatans.rhea.countdowntimer.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.view.accessibility.AccessibilityManager;
+
+import net.tatans.coeus.network.tools.TatansApplication;
+import net.tatans.coeus.network.tools.TatansToast;
 
 import java.util.List;
 
@@ -32,5 +36,15 @@ public class Util {
             }
         }
         return isWork;
+    }
+
+    public static void interrupt() {
+        try {
+            AccessibilityManager accessibilityManager = (AccessibilityManager) TatansApplication.getContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
+            accessibilityManager.interrupt();
+            TatansToast.cancel();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

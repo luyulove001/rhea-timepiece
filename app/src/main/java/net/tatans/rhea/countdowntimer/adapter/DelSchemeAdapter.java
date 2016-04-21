@@ -19,6 +19,7 @@ import net.tatans.rhea.countdowntimer.CountDownTimerActivity;
 import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
+import net.tatans.rhea.countdowntimer.utils.Util;
 
 import java.util.List;
 
@@ -83,7 +84,7 @@ public class DelSchemeAdapter extends BaseAdapter {
             public boolean onHover(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_HOVER_ENTER:
-                        interrupt();
+                        Util.interrupt();
                         TatansToast.showAndCancel(al_countDown.get(position).getCountDownTime() +
                 "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下来删除");
                 }
@@ -91,18 +92,8 @@ public class DelSchemeAdapter extends BaseAdapter {
             }
         });
         holder.tv_countdown_time.setTextColor(mContext.getResources().getColor(R.color.white));
-        convertView.setOnClickListener(new OnClickListenerImpl(position));
+//        convertView.setOnClickListener(new OnClickListenerImpl(position));
         return convertView;
-    }
-
-    private void interrupt() {
-        try {
-            AccessibilityManager accessibilityManager = (AccessibilityManager) TatansApplication.getContext().getSystemService(Context.ACCESSIBILITY_SERVICE);
-            accessibilityManager.interrupt();
-            TatansToast.cancel();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private class OnClickListenerImpl implements View.OnClickListener {
@@ -118,7 +109,7 @@ public class DelSchemeAdapter extends BaseAdapter {
             bean = al_countDown.get(mPosition);
             tdb.delete(bean);
             al_countDown = tdb.findAll(CountDownBean.class);
-            interrupt();
+            Util.interrupt();
             TatansToast.showAndCancel("删除成功");
             notifyDataSetChanged();
         }
