@@ -175,12 +175,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
 //                CountDownApplication.getSpeaker().speech("倒计时结束");
                 TatansToast.showAndCancel("倒计时结束");
                 stopService(new Intent(CountDownApplication.getInstance(), CountDownService.class));
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                    }
-                }, 1000);
+                finish();
                 break;
             case R.id.lyt_time:
                 break;
