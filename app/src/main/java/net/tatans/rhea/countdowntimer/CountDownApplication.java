@@ -4,7 +4,10 @@ import android.media.MediaPlayer;
 
 import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.CrashHandler;
+import net.tatans.coeus.network.tools.SoundPoolUtil;
 import net.tatans.coeus.network.tools.TatansApplication;
+
+import java.util.HashMap;
 
 /**
  * Created by Administrator on 2015/10/29.
@@ -14,6 +17,7 @@ public class CountDownApplication extends TatansApplication {
     private static boolean isPause = true;
     private static MediaPlayer mediaPlayer;
     private static Speaker speaker;
+    private static SoundPoolUtil soundPool;
 
     @Override
     public void onCreate() {
@@ -22,6 +26,18 @@ public class CountDownApplication extends TatansApplication {
         speaker = Speaker.getInstance(sInstance);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.initTatans("countdown");
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0, R.raw.silence);
+        soundPool= new SoundPoolUtil(map);
+    }
+
+    public static void soundPlay(){
+        stopAll();
+        soundPool.soundPlay(0, -1);
+    }
+
+    public static void stopAll(){
+        soundPool.stopAll();
     }
 
     public static Speaker getSpeaker() {

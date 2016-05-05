@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
@@ -14,13 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import net.tatans.coeus.network.tools.TatansActivity;
+import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 import net.tatans.rhea.countdowntimer.utils.Util;
-
-import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 
 
 /**
@@ -46,6 +47,12 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     private Handler handler = new Handler();
     private PowerManager.WakeLock wakeLock;//唤醒锁
     private Intent service;
+    //当前音量
+    private int currentVolume;
+    //控制音量的对象
+    public AudioManager mAudioManager;
+    //确保关闭程序后，停止线程
+    private boolean isDestroy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,9 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         intentFilter.addAction(Const.CLOCK_STOP);
         registerReceiver(myBroadcastReceiver, intentFilter);
         service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
+        isDestroy = false;
+        // 获得AudioManager对象
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);//音乐音量,如果要监听铃声音量变化，则改为AudioManager.STREAM_RING
         initData();
     }
 
@@ -67,7 +77,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     private void initData() {
 //        preferences = new Preferences(this);
 //        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
-        CountDownBean bean = (CountDownBean)getIntent().getSerializableExtra("countDown_scheme");
+        CountDownBean bean = (CountDownBean) getIntent().getSerializableExtra("countDown_scheme");
         if (bean == null) return;
         mMillisInFuture = bean.getCountDownTime() * Const.TIME_1;
         service.putExtra("countDown_scheme", bean);
@@ -75,6 +85,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             startService(service);
         tv_time.setText(showTimeCount(mMillisInFuture));
         acquireWakeLock();
+        onVolumeChangeListener();
+        CountDownApplication.soundPlay();
     }
 
     @Override
@@ -108,7 +120,9 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }
     }
 
-    // 释放设备电源锁
+    /**
+     * 释放设备电源锁
+     */
     private void releaseWakeLock() {
         if (null != wakeLock && wakeLock.isHeld()) {
             wakeLock.release();
@@ -119,9 +133,11 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        isDestroy = true;
         stopService(service);
         releaseWakeLock();
         unregisterReceiver(myBroadcastReceiver);
+        CountDownApplication.stopAll();
     }
 
     private class MyBroadcastReceiver extends BroadcastReceiver {
@@ -254,4 +270,46 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    /**
+     * 监听音量按键的线程
+     */
+    private Thread volumeChangeThread;
+
+    /**
+     * 持续监听音量变化 说明： 当前音量改变时，将音量值重置为最大值减2
+     */
+    public void onVolumeChangeListener() {
+
+        currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        volumeChangeThread = new Thread() {
+            public void run() {
+                while (!isDestroy) {
+                    // 监听的时间间隔
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        System.out.println("error in onVolumeChangeListener Thread.sleep(20) " + e.getMessage());
+                    }
+
+                    if (currentVolume < mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) {
+                        currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                        System.out.println("按下了音量+");
+                        CountDownApplication.getSpeaker().speech("还剩" + lyt_time.getContentDescription());
+                    }
+                    if (currentVolume > mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) {
+                        currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                        System.out.println("按下了音量-");
+                        CountDownApplication.getSpeaker().speech("还剩" + lyt_time.getContentDescription());
+
+                    }
+                }
+            }
+
+            ;
+        };
+        volumeChangeThread.start();
+        TatansLog.e("antony", "volumeChangeThread.start()=_=");
+    }
+
 }
