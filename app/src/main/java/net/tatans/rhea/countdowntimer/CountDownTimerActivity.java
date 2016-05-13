@@ -292,16 +292,11 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                         System.out.println("error in onVolumeChangeListener Thread.sleep(20) " + e.getMessage());
                     }
 
-                    if (currentVolume < mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) {
+                    if (currentVolume < mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+                            || currentVolume > mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) {
                         currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                         System.out.println("按下了音量+");
                         CountDownApplication.getSpeaker().speech("还剩" + lyt_time.getContentDescription());
-                    }
-                    if (currentVolume > mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC)) {
-                        currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                        System.out.println("按下了音量-");
-                        CountDownApplication.getSpeaker().speech("还剩" + lyt_time.getContentDescription());
-
                     }
                 }
             }

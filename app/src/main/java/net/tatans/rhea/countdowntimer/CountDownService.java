@@ -63,6 +63,7 @@ public class CountDownService extends Service {
             broadcast = new Intent();
             CountDownTimeWakeLock.acquireCpuWakeLock(CountDownApplication.getInstance());
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return super.onStartCommand(intent, flags, startId);
     }
