@@ -144,6 +144,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         @Override
         public void onReceive(Context context, Intent intent) {
             if (Const.CLOCK_TICK.equals(intent.getAction())) {
+                setTitle("还剩" + showTime(showTimeMillis(tv_time.getText().toString())));
                 tv_time.setText(showTimeCount(intent.getLongExtra("countDownTime", 0)));
                 tv_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
                 lyt_time.setContentDescription(showTime(intent.getLongExtra("countDownTime", 0)));
