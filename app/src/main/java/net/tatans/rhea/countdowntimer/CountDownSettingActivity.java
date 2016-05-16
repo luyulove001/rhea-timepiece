@@ -261,9 +261,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
                 startActivity(intent);
                 break;
         }
-        Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
-        boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
-        sendBroadcast(boardCost);
+//        Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
+//        boardCost.putExtra("countDownTime", preferences.getLong("countDownTime", Const.TIME_30));
+//        sendBroadcast(boardCost);
         finish();
     }
 

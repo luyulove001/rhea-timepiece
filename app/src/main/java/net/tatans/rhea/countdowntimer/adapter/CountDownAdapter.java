@@ -15,6 +15,7 @@ import net.tatans.rhea.countdowntimer.R;
 import java.util.List;
 
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.utils.Const;
 
 /**
  * Created by Administrator on 2016/3/24.
@@ -85,6 +86,9 @@ public class CountDownAdapter extends BaseAdapter {
         public void onClick(View v) {
             Intent intent = new Intent(mContext,CountDownTimerActivity.class);
             intent.putExtra("countDown_scheme", al_countDown.get(mPosition));
+            Intent boardCost = new Intent(Const.COUNTDOWN_TIME);
+            boardCost.putExtra("countDownTime", al_countDown.get(mPosition).getCountDownTime() * Const.TIME_1);
+            mContext.sendBroadcast(boardCost);
             mContext.startActivity(intent);
         }
     }

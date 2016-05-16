@@ -43,10 +43,10 @@
             android:label="@string/countdown_set"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="net.tatans.rhea.lock.countDownTime.first"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="net.tatans.rhea.lock.countDownTime.first"/>-->
+                <!--<category android:name="android.intent.category.DEFAULT"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".IntervalSettingActivity"

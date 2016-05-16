@@ -65,7 +65,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         if (preferences.getInt("intervalTime") == 0){
             preferences.putInt("intervalTime", 1);
         }
-        if(!preferences.getBoolean("isFirst", false)){
+        if(!preferences.getBoolean("isFirst", false) && al_countDown.size() == 0){
             preferences.putBoolean("isRinging", true);
             preferences.putBoolean("isVibrate", true);
             preferences.putBoolean("isSpeaking", true);
