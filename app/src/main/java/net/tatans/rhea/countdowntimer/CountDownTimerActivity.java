@@ -169,7 +169,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                     return;
                 if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
                     //继续计时
-                    pauseTime = showTimeMillis(tv_time.getText().toString());
+//                    pauseTime = showTimeMillis(tv_time.getText().toString());
                     stopService(service);
                     btn_pause_resume.setBackgroundResource(R.mipmap.btn_resume);
                     btn_pause_resume.setContentDescription("继续。按钮");
@@ -178,6 +178,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                     isPause = true;
                 } else {
                     //暂停计时
+                    pauseTime = showTimeMillis(tv_time.getText().toString());
                     service.putExtra("countDownTime", pauseTime);
                     startService(service);
                     btn_pause_resume.setBackgroundResource(R.mipmap.btn_pause);

@@ -29,7 +29,7 @@ public class CountDownService extends Service {
     private Handler handler = new Handler();
     private int remainder;
     private Intent broadcast;
-    private CountDownBean bean;
+    private CountDownBean bean = new CountDownBean();
     private TatansDb tdb;
 
     @Override
@@ -52,7 +52,21 @@ public class CountDownService extends Service {
         if (intent == null)
             return Service.START_NOT_STICKY;
         bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
-        if (bean == null) bean = tdb.findById(0, CountDownBean.class);
+        if (bean == null) {
+            int count = tdb.findAll(CountDownBean.class).size();
+            Log.e("antony", count+ "");
+            if (count == 0) {
+                bean.setId(0);
+                bean.setCountDownTime((int) (intent.getLongExtra("countDownTime",
+                        preferences.getLong("countDownTime", Const.TIME_30)) / 60000));
+                bean.setIntervalTime(30);
+                bean.setIsRinging(true);
+                bean.setIsSpeaking(true);
+                bean.setIsVibrate(true);
+            } else {
+                bean = tdb.findById(1, CountDownBean.class);
+            }
+        }
         try {
             remainder = (int) ((bean.getCountDownTime() * Const.TIME_1 / 1000) % (bean.getIntervalTime() * 60));
             mMillisInFuture = intent.getLongExtra("countDownTime", bean.getCountDownTime() * Const.TIME_1);
