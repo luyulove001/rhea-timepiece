@@ -195,6 +195,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
             case R.id.layout_stop:
 //                CountDownApplication.getSpeaker().speech("倒计时结束");
                 TatansToast.showAndCancel("倒计时结束");
+                Intent stop = new Intent(Const.CLOCK_STOP);
+                sendBroadcast(stop);
                 stopService(new Intent(CountDownApplication.getInstance(), CountDownService.class));
                 finish();
                 break;
