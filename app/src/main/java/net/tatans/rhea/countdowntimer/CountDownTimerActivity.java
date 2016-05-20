@@ -169,13 +169,16 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                     return;
                 if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
                     //继续计时
-//                    pauseTime = showTimeMillis(tv_time.getText().toString());
+                    pauseTime = showTimeMillis(tv_time.getText().toString());
                     stopService(service);
                     btn_pause_resume.setBackgroundResource(R.mipmap.btn_resume);
                     btn_pause_resume.setContentDescription("继续。按钮");
                     layout_pause_resume.setContentDescription("继续。按钮");
                     TatansToast.showAndCancel("倒计时已暂停");
                     isPause = true;
+                    Intent lock = new Intent("net.tatans.rhea.lock.countDownTime.pauseTime");
+                    lock.putExtra("pauseTime", pauseTime);
+                    sendBroadcast(lock);
                 } else {
                     //暂停计时
                     pauseTime = showTimeMillis(tv_time.getText().toString());
