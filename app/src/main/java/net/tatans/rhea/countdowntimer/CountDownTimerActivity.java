@@ -63,6 +63,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Const.CLOCK_TICK);
         intentFilter.addAction(Const.CLOCK_STOP);
+        intentFilter.addAction(Const.CLOCK_RESTART);
         registerReceiver(myBroadcastReceiver, intentFilter);
         service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         isDestroy = false;
@@ -75,8 +76,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
      * 初始化数据
      */
     private void initData() {
-//        preferences = new Preferences(this);
-//        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         CountDownBean bean = (CountDownBean) getIntent().getSerializableExtra("countDown_scheme");
         if (bean == null) return;
         mMillisInFuture = bean.getCountDownTime() * Const.TIME_1;
@@ -157,6 +156,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                         finish();
                     }
                 }, 1000);
+            } else if (Const.CLOCK_RESTART.equals(intent.getAction())){
+                finish();
             }
         }
     }

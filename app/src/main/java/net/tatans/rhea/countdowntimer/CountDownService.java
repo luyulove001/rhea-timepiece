@@ -15,6 +15,8 @@ import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2015/11/24.
  */
@@ -53,7 +55,8 @@ public class CountDownService extends Service {
             return Service.START_NOT_STICKY;
         bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
         if (bean == null) {
-            int count = tdb.findAll(CountDownBean.class).size();
+            List<CountDownBean> timeList =  tdb.findAll(CountDownBean.class);
+            int count = timeList.size();
             Log.e("antony", count+ "");
             if (count == 0) {
                 bean.setId(0);
@@ -61,10 +64,10 @@ public class CountDownService extends Service {
                         preferences.getLong("countDownTime", Const.TIME_30)) / 60000));
                 bean.setIntervalTime(30);
                 bean.setIsRinging(true);
-                bean.setIsSpeaking(true);
+                bean.setIsSpeaking(false);
                 bean.setIsVibrate(true);
             } else {
-                bean = tdb.findById(1, CountDownBean.class);
+                bean = timeList.get(0);
             }
         }
         try {
