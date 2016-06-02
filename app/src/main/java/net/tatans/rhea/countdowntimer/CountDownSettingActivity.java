@@ -71,7 +71,7 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         setTitle("倒计时时间设置");
         preferences = new Preferences(this);
         if (preferences.getBoolean("isFirst", true)) {
-            preferences.putBoolean("isFirst", false);
+//            preferences.putBoolean("isFirst", false);
             preferences.putInt("TimeLevel", 30);
         }
     }
