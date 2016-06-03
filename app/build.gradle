@@ -27,6 +27,11 @@ android {
         }
 
     }
+    allprojects {
+        repositories {
+            mavenCentral()
+        }
+    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false

@@ -12,19 +12,20 @@
     <uses-permission android:name="ANDROID.PERMISSION.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="ANDROID.PERMISSION.READ_PHONE_STATE"/>
     <uses-permission android:name="ANDROID.PERMISSION.INTERNET"/>
-    <!-- umeng  appkey + channel -->
-    <meta-data
-        android:name="UMENG_APPKEY"
-        android:value="574f93c0e0f55a24e3002066" />
-    <meta-data
-        android:name="UMENG_CHANNEL"
-        android:value="tatansPublish" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+
     <application
         android:name=".CountDownApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <!-- umeng  appkey + channel -->
+        <meta-data android:value="574f93c0e0f55a24e3002066" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="tatansPbulish" android:name="UMENG_CHANNEL"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

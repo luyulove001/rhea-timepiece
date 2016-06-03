@@ -7,6 +7,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.countdowntimer.utils.Const;
@@ -80,6 +82,7 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         initView();
+        MobclickAgent.onResume(this);
     }
 
     private void initView() {
@@ -280,5 +283,9 @@ public class CountDownSettingActivity extends TatansActivity implements View.OnC
         img_tick_hour_2.setVisibility(View.GONE);
         img_tick_custom.setVisibility(View.GONE);
         tick.setVisibility(View.VISIBLE);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

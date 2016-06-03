@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.tools.TatansLog;
@@ -64,5 +66,13 @@ public class DeleteActivity extends TatansActivity implements AdapterView.OnItem
     @Override
     public void onClick(View v) {
         if (al_countDown.size() == 0) TatansToast.showAndCancel("没有倒计时");
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

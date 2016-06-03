@@ -14,6 +14,8 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansToast;
@@ -91,6 +93,7 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         if (!Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
             setTitle("计时已暂停");
             btn_pause_resume.setBackgroundResource(R.mipmap.btn_resume);
@@ -314,5 +317,8 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
         volumeChangeThread.start();
         TatansLog.e("antony", "volumeChangeThread.start()=_=");
     }
-
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

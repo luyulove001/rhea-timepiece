@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
@@ -50,6 +52,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         c = new CountDownTimerActivity();
         p = new Preferences(this);
         String str = c.showTime(p.getLong("countDownTime", Const.TIME_30));
@@ -98,5 +101,8 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
                 break;
         }
     }
-
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
 }

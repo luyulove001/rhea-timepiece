@@ -7,6 +7,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
@@ -224,5 +226,13 @@ public class IntervalSettingActivity extends TatansActivity implements View.OnCl
         img_tick_hour_1_1.setVisibility(View.GONE);
         img_tick_hour_2.setVisibility(View.GONE);
         tick.setVisibility(View.VISIBLE);
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }

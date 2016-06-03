@@ -6,6 +6,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
@@ -130,5 +132,13 @@ public class ModelActivity extends TatansActivity implements View.OnClickListene
         if (!preferences.getBoolean("isSpeaking", false) && !preferences.getBoolean("isVibrate", false)
                 && !preferences.getBoolean("isRinging", false))
             TatansToast.showAndCancel("您当前关闭，点按可切换任何播报提示");
+    }
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 }
