@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 
+import net.tatans.coeus.network.tools.BaseActivity;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;

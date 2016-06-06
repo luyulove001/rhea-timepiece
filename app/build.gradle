@@ -13,7 +13,7 @@ android {
     defaultConfig {
         manifestPlaceholders = [APP_NAME:AppName]
         applicationId "net.tatans.rhea.countdowntimer"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode version_code.toInteger()
         versionName "2.0."+version_code
@@ -62,11 +62,13 @@ android {
         }
     }
 }
-
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(1, "minutes")
+}
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'net.tatans.coeus:coeus-network:5.0.0-release'
+    compile 'net.tatans.coeus:coeus-network:5.4.0-SNAPSHOT'
     compile 'com.android.support:design:22.2.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
 }

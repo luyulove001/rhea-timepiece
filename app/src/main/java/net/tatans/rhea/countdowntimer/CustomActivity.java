@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 
-import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
@@ -40,7 +39,6 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     TextView tv_custom_time_set;
     private long mMillisInFuture = Const.TIME_30;
     private boolean isMinute;
-    private Speaker speaker;
     private int hour = 0, minute = 0;
     private Preferences preferences;
 
@@ -54,7 +52,6 @@ public class CustomActivity extends TatansActivity implements View.OnClickListen
     }
 
     private void initView() {
-        speaker = Speaker.getInstance(this);
         preferences = new Preferences(this);
 //        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
 //        hour = (int) (mMillisInFuture / Const.TIME_1 / 60);
