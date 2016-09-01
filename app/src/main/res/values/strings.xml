@@ -27,4 +27,5 @@
     <string name="custom_time">自定义时间</string>
     <string name="add_countdown_scheme">添加倒计时</string>
     <string name="del_countdown_scheme">删除倒计时</string>
+    <string name="time_statistics">本月按摩时间统计:100小时</string>
 </resources>
