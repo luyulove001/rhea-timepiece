@@ -28,4 +28,5 @@
     <string name="add_countdown_scheme">添加倒计时</string>
     <string name="del_countdown_scheme">删除倒计时</string>
     <string name="time_statistics">本月按摩时间统计:100小时</string>
+    <string name="join_massage_set">加入按摩统计</string>
 </resources>
