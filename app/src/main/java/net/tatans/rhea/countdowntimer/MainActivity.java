@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import com.umeng.analytics.MobclickAgent;
 
-import net.tatans.coeus.network.tools.BaseActivity;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.activity.MonthMassageActivity;
 import net.tatans.rhea.countdowntimer.adapter.CountDownAdapter;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.bean.MassageTimeBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 import net.tatans.rhea.countdowntimer.utils.Util;
@@ -35,8 +36,11 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     ListView lv_countdown_time;
     @ViewInject(id = R.id.empty_main, click = "onClick")
     TextView tv_empty;
+    @ViewInject(id = R.id.time_statistics, click = "onClick")
+    TextView timeStatistics;
     private Preferences preferences;
     private List<CountDownBean> al_countDown = new ArrayList<>();
+    private List<MassageTimeBean> al_massageTime = new ArrayList<>();
     private CountDownAdapter countDownAdapter;
     private TatansDb tdb;
 
@@ -66,16 +70,16 @@ public class MainActivity extends TatansActivity implements OnClickListener {
      * 计算计时时间
      */
     private void initView() {
-        tdb = TatansDb.create(Const.CountDown_DB);
+        tdb = TatansDb.create(Const.CountDownDB);
         preferences = new Preferences(this);
 //        long time = preferences.getLong("countDownTime", Const.TIME_30);
 //        CountDownTimerActivity cdt = new CountDownTimerActivity();
         start_time.setContentDescription("添加倒计时。按钮");
         setting.setContentDescription("删除倒计时。按钮");
-        if (preferences.getInt("intervalTime") == 0){
+        if (preferences.getInt("intervalTime") == 0) {
             preferences.putInt("intervalTime", 1);
         }
-        if(!preferences.getBoolean("isFirst", false) && al_countDown.size() == 0){
+        if (!preferences.getBoolean("isFirst", false) && al_countDown.size() == 0) {
             preferences.putBoolean("isRinging", true);
             preferences.putBoolean("isVibrate", true);
             preferences.putBoolean("isSpeaking", true);
@@ -83,13 +87,33 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             initCountDownData();
         }
         initListView();
+        initMassageData();
+    }
+
+    private void initMassageData() {
+        int duration = 0;//分钟
+        al_massageTime = tdb.findAll(MassageTimeBean.class);
+        if (al_massageTime.isEmpty())
+            return;
+        for (int i = 0; i < al_massageTime.size(); i++) {
+            duration += al_massageTime.get(i).getDuration();
+        }
+        if (duration != 0) {
+            timeStatistics.setVisibility(View.VISIBLE);
+            String time = (duration / 60 == 0 ? "" : duration / 60 + getString(R.string.hour))
+                    + (duration % 60 == 0 ? "" : duration % 60 + getString(R.string.minute));
+            timeStatistics.setText(getString(R.string.time_statistics) + time);
+        } else {
+            timeStatistics.setVisibility(View.GONE);
+        }
     }
 
     private void initListView() {
         al_countDown = tdb.findAll(CountDownBean.class);
         countDownAdapter = new CountDownAdapter(MainActivity.this, al_countDown);
         lv_countdown_time.setAdapter(countDownAdapter);
-        if (al_countDown.size() == 0) tv_empty.setContentDescription("没有倒计时");
+        if (al_countDown == null || al_countDown.isEmpty())
+            tv_empty.setContentDescription("没有倒计时");
         else tv_empty.setContentDescription("");
     }
 
@@ -98,7 +122,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
      */
     private void initCountDownData() {
         CountDownBean countDownBean = new CountDownBean();
-        int[] countDownTime = new int[] {30, 60, 120};
+        int[] countDownTime = new int[]{30, 60, 120};
         for (int i = 0; i < countDownTime.length; i++) {
             countDownBean.setId(i);
             countDownBean.setCountDownTime(countDownTime[i]);
@@ -108,11 +132,11 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             countDownBean.setIsVibrate(true);
             tdb.save(countDownBean);
         }
-        Log.e("antony", "-----------------" );
+        Log.e("antony", "-----------------");
     }
 
-    private void isServiceAlive(){
-        if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)){
+    private void isServiceAlive() {
+        if (Util.isServiceWork(CountDownApplication.getInstance(), Const.COUNTDOWN_SERVICE)) {
             Intent intent = new Intent(this, CountDownTimerActivity.class);
             startActivity(intent);
         }
@@ -131,6 +155,11 @@ public class MainActivity extends TatansActivity implements OnClickListener {
                 break;
             case R.id.setting:
                 intent.setClass(this, DeleteActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.time_statistics:
+                intent.setClass(this, MonthMassageActivity.class);
+                intent.putExtra(Const.ToMassageActivity, Const.ISMONTH);
                 startActivity(intent);
                 break;
             default:

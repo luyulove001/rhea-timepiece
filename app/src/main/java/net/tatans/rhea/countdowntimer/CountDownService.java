@@ -11,11 +11,15 @@ import android.util.Log;
 
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
+import net.tatans.rhea.countdowntimer.bean.MassageTimeBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.CountDownTimeWakeLock;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Administrator on 2015/11/24.
@@ -45,7 +49,7 @@ public class CountDownService extends Service {
         preferences = new Preferences(this);
 //        mMillisInFuture = preferences.getLong("countDownTime", mMillisInFuture);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        tdb = TatansDb.create(Const.CountDown_DB);
+        tdb = TatansDb.create(Const.CountDownDB);
 //        remainder = (int) ((mMillisInFuture / 1000) % (preferences.getInt("intervalTime") * 60));
     }
 
@@ -55,9 +59,9 @@ public class CountDownService extends Service {
             return Service.START_NOT_STICKY;
         bean = (CountDownBean) intent.getSerializableExtra("countDown_scheme");
         if (bean == null) {
-            List<CountDownBean> timeList =  tdb.findAll(CountDownBean.class);
+            List<CountDownBean> timeList = tdb.findAll(CountDownBean.class);
             int count = timeList.size();
-            Log.e("antony", count+ "");
+            Log.e("antony", count + "");
             if (count == 0) {
                 bean.setId(0);
                 bean.setCountDownTime((int) (intent.getLongExtra("countDownTime",
@@ -77,6 +81,7 @@ public class CountDownService extends Service {
                     "---" + remainder + "--- bean.getIntervalTime():" + bean.getIntervalTime() + "---bean.getCountDownTime():" + bean.getCountDownTime());
             countDownTimer = new MyCountDownTimer(mMillisInFuture, mCountDownInterval);
             countDownTimer.start();
+            countDownTimer.setStartTime();
             broadcast = new Intent();
             CountDownTimeWakeLock.acquireCpuWakeLock(CountDownApplication.getInstance());
         } catch (Exception e) {
@@ -94,6 +99,9 @@ public class CountDownService extends Service {
 
     private void stopCountDown() {
         if (countDownTimer != null) {
+            getEndTime(countDownTimer.mMillisInFuture - countDownTimer.mMillisUntilFinished, countDownTimer.startTime);
+            Log.e("antony", "mMillisInFuture = " + countDownTimer.mMillisInFuture + " -- mMillisUntilFinished = "
+                    + countDownTimer.mMillisUntilFinished + " -- startTime = " + countDownTimer.startTime);
             countDownTimer.cancel();
             countDownTimer = null;
         }
@@ -102,10 +110,14 @@ public class CountDownService extends Service {
     /**
      * 自定义倒计时类
      */
-    class MyCountDownTimer extends CountDownTimer {
+    private class MyCountDownTimer extends CountDownTimer {
+        public long mMillisUntilFinished;
+        public String startTime;
+        public long mMillisInFuture;
 
         public MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
+            this.mMillisInFuture = millisInFuture;
         }
 
         /**
@@ -115,7 +127,9 @@ public class CountDownService extends Service {
          */
         @Override
         public void onTick(long millisUntilFinished) {
-            if (broadcast == null) broadcast = new Intent();
+            mMillisUntilFinished = millisUntilFinished;
+            if (broadcast == null)
+                broadcast = new Intent();
             broadcast.setAction(Const.CLOCK_TICK);
             broadcast.putExtra("countDownTime", millisUntilFinished);
             sendBroadcast(broadcast);
@@ -133,10 +147,41 @@ public class CountDownService extends Service {
         @Override
         public void onFinish() {
             model(0, true);
-            if (broadcast == null) broadcast = new Intent();
+            if (broadcast == null)
+                broadcast = new Intent();
             broadcast.setAction(Const.CLOCK_STOP);
             sendBroadcast(broadcast);
+            getEndTime(mMillisInFuture - mMillisUntilFinished, startTime);
+            Log.e("antony", "mMillisInFuture = " + mMillisInFuture + " -- mMillisUntilFinished = "
+                    + mMillisUntilFinished + " -- startTime = " + startTime);
         }
+
+        public void setStartTime() {
+            Calendar start = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            startTime = sdf.format(start.getTime());
+        }
+    }
+
+    private MassageTimeBean getEndTime(long useTime, String startTime) {
+        MassageTimeBean bean = new MassageTimeBean();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm", Locale.getDefault());
+        Log.e("antony", sdf.format(calendar.getTime()));
+        String id = sdf.format(calendar.getTime());
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        bean.setId(id);
+        bean.setYear(year);
+        bean.setMonth(month + 1);
+        bean.setDay(day);
+        bean.setStartTime(startTime);
+        bean.setDuration((int) useTime / 60000);
+        Log.e("antony", useTime / 60000 + "分");
+//        if (useTime / 60000 > 0)
+            tdb.save(bean);
+        return bean;
     }
 
     /**

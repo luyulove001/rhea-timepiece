@@ -12,7 +12,6 @@ import com.umeng.analytics.MobclickAgent;
 
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
-import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.countdowntimer.adapter.DelSchemeAdapter;
@@ -37,7 +36,7 @@ public class DeleteActivity extends TatansActivity implements AdapterView.OnItem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.del_list);
-        tdb = TatansDb.create(Const.CountDown_DB);
+        tdb = TatansDb.create(Const.CountDownDB);
         al_countDown = tdb.findAll(CountDownBean.class);
         lv_del_countdown = (ListView) findViewById(R.id.lv_del_countdown);
         lv_del_countdown.setAdapter(new DelSchemeAdapter(DeleteActivity.this, al_countDown));

@@ -4,7 +4,6 @@ package net.tatans.rhea.countdowntimer.utils;
  * Created by Administrator on 2015/10/28.
  */
 public class Const {
-    public static final String CountDown = "CountDown";
     public static final Long TIME_1 = Long.valueOf(1 * 60 * 1000);
     public static final Long TIME_5 = Long.valueOf(5 * 60 * 1000);
     public static final Long TIME_10 = Long.valueOf(10 * 60 * 1000);
@@ -22,5 +21,9 @@ public class Const {
     public static final String CLOCK_PAUSE = "net.tatans.rhea.lock.countDownTime.pause";
     public static final String CLOCK_RESTART = "net.tatans.rhea.lock.countDownTime.restart";
     public static final String COUNTDOWN_SERVICE = "net.tatans.rhea.countdowntimer.CountDownService";
-    public static final String CountDown_DB = "CountDown";
+    public static final String CountDownDB = "CountDown";
+    public static final int ISMONTH = 0;
+    public static final int ISDAILY = 1;
+    public static final int ISDETAIL = 2;
+    public static final String ToMassageActivity = "massage";
 }

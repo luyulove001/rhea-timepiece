@@ -46,7 +46,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         setContentView(R.layout.setting);
         setTitle("设置");
         setResult(RESULT_OK);
-        tatansDb = TatansDb.create(Const.CountDown_DB);
+        tatansDb = TatansDb.create(Const.CountDownDB);
     }
 
     @Override

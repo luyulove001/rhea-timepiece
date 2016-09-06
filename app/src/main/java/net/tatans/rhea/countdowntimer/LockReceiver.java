@@ -3,7 +3,6 @@ package net.tatans.rhea.countdowntimer;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
@@ -28,7 +27,7 @@ public class LockReceiver extends BroadcastReceiver {
         super();
         service = new Intent(CountDownApplication.getInstance(), CountDownService.class);
         preferences = new Preferences(CountDownApplication.getInstance());
-        tdb = TatansDb.create(Const.CountDown_DB);
+        tdb = TatansDb.create(Const.CountDownDB);
         al_countDown = new ArrayList<>();
         al_countDown = tdb.findAll(CountDownBean.class);
     }

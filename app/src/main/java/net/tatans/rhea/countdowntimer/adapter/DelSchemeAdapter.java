@@ -1,21 +1,16 @@
 package net.tatans.rhea.countdowntimer.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import net.tatans.coeus.network.tools.TatansApplication;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.tools.TatansToast;
-import net.tatans.rhea.countdowntimer.CountDownTimerActivity;
 import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
@@ -43,7 +38,7 @@ public class DelSchemeAdapter extends BaseAdapter {
         this.al_countDown = al_countDown;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
-        tdb = TatansDb.create(Const.CountDown_DB);
+        tdb = TatansDb.create(Const.CountDownDB);
     }
 
     @Override

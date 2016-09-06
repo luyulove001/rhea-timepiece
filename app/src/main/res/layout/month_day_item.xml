@@ -22,7 +22,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/duration"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_720x1280"
             android:layout_marginLeft="157dp"
@@ -34,9 +34,9 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/arrow"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="19dp"/>
+            android:layout_marginLeft="19dp"
+            android:src="@mipmap/arrow" />
     </LinearLayout>
 
     <View

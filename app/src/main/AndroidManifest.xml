@@ -71,6 +71,9 @@
             android:name=".ModelActivity"
             android:label="@string/model_set"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MonthMassageActivity"
+            android:screenOrientation="portrait" />
 
         <service android:name=".CountDownService" />
         <receiver android:name=".LockReceiver">
