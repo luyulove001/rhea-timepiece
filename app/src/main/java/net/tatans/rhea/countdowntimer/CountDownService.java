@@ -179,7 +179,7 @@ public class CountDownService extends Service {
         bean.setStartTime(startTime);
         bean.setDuration((int) useTime / 60000);
         Log.e("antony", useTime / 60000 + "分");
-//        if (useTime / 60000 > 0)
+        if (useTime / 60000 > 0 && this.bean.isMassage())
             tdb.save(bean);
         return bean;
     }

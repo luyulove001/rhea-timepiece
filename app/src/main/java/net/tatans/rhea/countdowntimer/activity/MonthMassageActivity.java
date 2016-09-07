@@ -36,7 +36,6 @@ public class MonthMassageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("月份列表");
         tdb = TatansDb.create(Const.CountDownDB);
         c = Calendar.getInstance();
         switch (getIntent().getIntExtra(Const.ToMassageActivity, 0)) {
@@ -60,6 +59,7 @@ public class MonthMassageActivity extends BaseActivity {
      * 每日详情列表
      */
     private void initDetailView() {
+        setTitle("每日详情列表");
         List<DbModel> lsDb = tdb.findDbModelListBySQL("select * from MassageTime where month = " +
                 (getIntent().getIntExtra("month", 0)) + " and day = " + (getIntent().getIntExtra("day", 0)) +
                 " order by month DESC");
@@ -82,6 +82,7 @@ public class MonthMassageActivity extends BaseActivity {
      * 每日统计列表
      */
     private void initDailyView() {
+        setTitle("每日统计列表");
         List<DbModel> lsDb = tdb.findDbModelListBySQL("select id, year, month, day, startTime," +
                 " sum(duration) as duration from MassageTime where month = " +
                 (c.get(Calendar.MONTH) + 1 - getIntent().getIntExtra("position", 0)) +
@@ -115,6 +116,7 @@ public class MonthMassageActivity extends BaseActivity {
      * 每月统计列表，查询数据库并将数据放入list
      */
     private void initMonthView() {
+        setTitle("月份列表");
         final List<DbModel> lsDb = tdb.findDbModelListBySQL("select id, year, month, day, startTime, sum(duration)" +
                 " as duration from MassageTime group by year, month order by month DESC");
         List<MassageTimeBean> lsMtb = new ArrayList<>();

@@ -15,6 +15,15 @@ public class CountDownBean implements Serializable {
     private boolean isSpeaking;
     private boolean isRinging;
     private boolean isVibrate;
+    private boolean isMassage;
+
+    public boolean isMassage() {
+        return isMassage;
+    }
+
+    public void setMassage(boolean massage) {
+        isMassage = massage;
+    }
 
     public int getId() {
         return id;

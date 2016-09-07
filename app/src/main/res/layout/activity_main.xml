@@ -70,12 +70,13 @@
         android:background="#fff" />
 
     <ListView
-        android:background="@color/white"
         android:id="@+id/lv_countdown_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:choiceMode="singleChoice" />
+        android:background="@color/white"
+        android:choiceMode="singleChoice"
+        android:divider="@null" />
 
 
     <TextView

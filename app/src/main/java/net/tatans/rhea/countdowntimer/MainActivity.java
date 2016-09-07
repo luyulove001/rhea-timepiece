@@ -93,8 +93,10 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     private void initMassageData() {
         int duration = 0;//分钟
         al_massageTime = tdb.findAll(MassageTimeBean.class);
-        if (al_massageTime.isEmpty())
+        if (al_massageTime.isEmpty()) {
+            timeStatistics.setVisibility(View.GONE);
             return;
+        }
         for (int i = 0; i < al_massageTime.size(); i++) {
             duration += al_massageTime.get(i).getDuration();
         }
@@ -130,6 +132,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             countDownBean.setIsRinging(true);
             countDownBean.setIsSpeaking(true);
             countDownBean.setIsVibrate(true);
+            countDownBean.setMassage(false);
             tdb.save(countDownBean);
         }
         Log.e("antony", "-----------------");
