@@ -72,14 +72,12 @@ public class MainActivity extends TatansActivity implements OnClickListener {
     private void initView() {
         tdb = TatansDb.create(Const.CountDownDB);
         preferences = new Preferences(this);
-//        long time = preferences.getLong("countDownTime", Const.TIME_30);
-//        CountDownTimerActivity cdt = new CountDownTimerActivity();
         start_time.setContentDescription("添加倒计时。按钮");
         setting.setContentDescription("删除倒计时。按钮");
         if (preferences.getInt("intervalTime") == 0) {
             preferences.putInt("intervalTime", 1);
         }
-        if (!preferences.getBoolean("isFirst", false) && al_countDown.size() == 0) {
+        if (!preferences.getBoolean("isFirst", false) && al_countDown.isEmpty()) {
             preferences.putBoolean("isRinging", true);
             preferences.putBoolean("isVibrate", true);
             preferences.putBoolean("isSpeaking", true);
@@ -132,7 +130,7 @@ public class MainActivity extends TatansActivity implements OnClickListener {
             countDownBean.setIsRinging(true);
             countDownBean.setIsSpeaking(true);
             countDownBean.setIsVibrate(true);
-            countDownBean.setMassage(false);
+            countDownBean.setMassage(true);
             tdb.save(countDownBean);
         }
         Log.e("antony", "-----------------");
@@ -150,9 +148,6 @@ public class MainActivity extends TatansActivity implements OnClickListener {
         Intent intent = new Intent();
         switch (v.getId()) {
             case R.id.start_time:
-//                TatansToast.showAndCancel("计时开始");
-//                intent.setClass(this, CountDownTimerActivity.class);
-//                startActivity(intent);
                 intent.setClass(this, SettingActivity.class);
                 startActivity(intent);
                 break;

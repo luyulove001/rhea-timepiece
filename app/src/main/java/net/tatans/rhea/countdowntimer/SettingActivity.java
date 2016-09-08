@@ -62,7 +62,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         MobclickAgent.onResume(this);
         c = new CountDownTimerActivity();
         p = new Preferences(this);
-        isMassage = false;
+        isMassage = true;
         String str = c.showTime(p.getLong("countDownTime", Const.TIME_30));
         time_countdown.setText(str);
         lyt_countdown_set.setContentDescription("倒计时设置，" + str + "。按钮");
@@ -70,12 +70,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         time_interval.setText(str);
         lyt_interval_set.setContentDescription("时间间隔设置，" + str + "。按钮");
         lyt_model_set.setContentDescription("播放模式设置。按钮");
-        lytMassageToggle.setContentDescription(getString(R.string.join_massage_set) + "。已关闭");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        lytMassageToggle.setContentDescription(getString(R.string.join_massage_set) + "。已开启");
     }
 
     @Override
@@ -136,6 +131,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
         }
     }
 
+    @Override
     public void onPause() {
         super.onPause();
         MobclickAgent.onPause(this);

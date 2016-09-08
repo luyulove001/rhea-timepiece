@@ -38,6 +38,11 @@ public class MonthMassageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         tdb = TatansDb.create(Const.CountDownDB);
         c = Calendar.getInstance();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         switch (getIntent().getIntExtra(Const.ToMassageActivity, 0)) {
             case Const.ISMONTH:
                 initMonthView();
@@ -71,11 +76,12 @@ public class MonthMassageActivity extends BaseActivity {
         SelectResultBean srb;
         for (int i = 0; i < lsMtb.size(); i++) {
             srb = new SelectResultBean();
+            srb.setId(lsMtb.get(i).getId());
             srb.setTime(lsMtb.get(i).getStartTime());
             srb.setDuration(lsMtb.get(i).getDuration());
             lsSrb.add(srb);
         }
-        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb));
+        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb, Const.ISDETAIL));
     }
 
     /**
@@ -95,11 +101,12 @@ public class MonthMassageActivity extends BaseActivity {
         SelectResultBean srb;
         for (int i = 0; i < lsMtb.size(); i++) {
             srb = new SelectResultBean();
+            srb.setId(lsMtb.get(i).getId());
             srb.setTime(lsMtb.get(i).getMonth() + "月" + lsMtb.get(i).getDay() + "日");
             srb.setDuration(lsMtb.get(i).getDuration());
             lsSrb.add(srb);
         }
-        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb));
+        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb, Const.ISDAILY));
         massageTimeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -130,6 +137,7 @@ public class MonthMassageActivity extends BaseActivity {
             if (c.get(Calendar.YEAR) == lsMtb.get(i).getYear()) {
                 if ((c.get(Calendar.MONTH) + 1) == lsMtb.get(i).getMonth()) {
                     srb = new SelectResultBean();
+                    srb.setId(lsMtb.get(i).getId());
                     srb.setTime("本月");
                     srb.setDuration(lsMtb.get(i).getDuration());
                 } else if (c.get(Calendar.MONTH) == lsMtb.get(i).getMonth()) {
@@ -144,7 +152,7 @@ public class MonthMassageActivity extends BaseActivity {
                 lsSrb.add(srb);
             }
         }
-        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb));
+        massageTimeList.setAdapter(new MonthDayAdapter(MonthMassageActivity.this, lsSrb, Const.ISMONTH));
         massageTimeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

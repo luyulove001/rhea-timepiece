@@ -180,7 +180,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="12dp"
-                android:src="@mipmap/close_icon" />
+                android:src="@mipmap/open_icon" />
 
         </RelativeLayout>
 
