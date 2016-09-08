@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import net.tatans.coeus.db.sqlite.CursorUtils;
 import net.tatans.coeus.db.sqlite.DbModel;
@@ -24,12 +25,15 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
+ * 按摩统计界面
  * Created by cly on 2016/9/2.
  */
 @ContentView(R.layout.month_day)
 public class MonthMassageActivity extends BaseActivity {
     @ViewIoc(R.id.month_day)
-    ListView massageTimeList;
+    private ListView massageTimeList;
+    @ViewIoc(R.id.empty_massage)
+    private TextView tvEmpty;
     private TatansDb tdb;
     private Calendar c;
 
@@ -38,6 +42,7 @@ public class MonthMassageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         tdb = TatansDb.create(Const.CountDownDB);
         c = Calendar.getInstance();
+        tvEmpty.setContentDescription("空白区域");
     }
 
     @Override

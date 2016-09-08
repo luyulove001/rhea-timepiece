@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +10,8 @@
         android:id="@+id/start_time"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:contentDescription="@string/add_countdown_scheme"
         android:focusable="true"
         android:gravity="center_vertical">
@@ -34,6 +36,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
+        android:layout_below="@+id/start_time"
         android:layout_marginLeft="17dp"
         android:background="#fff" />
 
@@ -41,6 +44,8 @@
         android:id="@+id/setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/start_time"
         android:contentDescription="@string/del_countdown_scheme"
         android:focusable="true"
         android:gravity="center_vertical"
@@ -64,8 +69,10 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/line_setting"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_height"
+        android:layout_below="@+id/setting"
         android:layout_marginLeft="17dp"
         android:background="#fff" />
 
@@ -73,6 +80,7 @@
         android:id="@+id/lv_countdown_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/line_setting"
         android:layout_gravity="center_horizontal"
         android:background="@color/white"
         android:choiceMode="singleChoice"
@@ -83,15 +91,17 @@
         android:id="@+id/empty_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_below="@+id/lv_countdown_time"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/time_statistics"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_720x1280"
+        android:layout_alignParentBottom="true"
         android:background="#FF242424"
         android:gravity="center"
         android:text="@string/time_statistics"
         android:textColor="#fff"
         android:textSize="20sp" />
-</LinearLayout>
+</RelativeLayout>
