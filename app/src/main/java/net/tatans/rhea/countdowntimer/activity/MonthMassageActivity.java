@@ -71,8 +71,7 @@ public class MonthMassageActivity extends BaseActivity {
     private void initDetailView() {
         setTitle("每日详情列表");
         List<DbModel> lsDb = tdb.findDbModelListBySQL("select * from MassageTime where month = " +
-                (getIntent().getIntExtra("month", 0)) + " and day = " + (getIntent().getIntExtra("day", 0)) +
-                " order by month DESC");
+                (getIntent().getIntExtra("month", 0)) + " and day = " + (getIntent().getIntExtra("day", 0)));
         final List<MassageTimeBean> lsMtb = new ArrayList<>();
         for (int i = 0; i < lsDb.size(); i++) {
             lsMtb.add((MassageTimeBean) CursorUtils.dbModel2Entity(lsDb.get(i), MassageTimeBean.class));
@@ -97,7 +96,7 @@ public class MonthMassageActivity extends BaseActivity {
         List<DbModel> lsDb = tdb.findDbModelListBySQL("select id, year, month, day, startTime," +
                 " sum(duration) as duration from MassageTime where month = " +
                 (c.get(Calendar.MONTH) + 1 - getIntent().getIntExtra("position", 0)) +
-                " group by year, month, day order by month DESC");
+                " group by year, month, day order by day DESC");
         final List<MassageTimeBean> lsMtb = new ArrayList<>();
         for (int i = 0; i < lsDb.size(); i++) {
             lsMtb.add((MassageTimeBean) CursorUtils.dbModel2Entity(lsDb.get(i), MassageTimeBean.class));

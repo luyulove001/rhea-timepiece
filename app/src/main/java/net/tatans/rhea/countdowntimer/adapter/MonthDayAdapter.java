@@ -76,7 +76,7 @@ public class MonthDayAdapter extends BaseAdapter {
         holder.tvTime.setText(alMassage.get(position).getTime());
         if (mFlag == Const.ISDETAIL) {
             holder.imgDel.setImageResource(R.mipmap.btn_delete_time);
-            holder.imgDel.setContentDescription("删除按钮");
+            holder.imgDel.setContentDescription("删除");
             holder.imgDel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

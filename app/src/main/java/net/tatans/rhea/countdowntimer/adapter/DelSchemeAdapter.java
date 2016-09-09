@@ -34,7 +34,7 @@ public class DelSchemeAdapter extends BaseAdapter {
         public TextView tv_countdown_time;
     }
 
-    public DelSchemeAdapter(Context context, List<CountDownBean> al_countDown){
+    public DelSchemeAdapter(Context context, List<CountDownBean> al_countDown) {
         this.al_countDown = al_countDown;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
@@ -72,41 +72,21 @@ public class DelSchemeAdapter extends BaseAdapter {
         }
         holder.icon_time.setBackgroundResource(R.mipmap.icon_time);
         holder.tv_countdown_time.setText(al_countDown.get(position).getCountDownTime() + "分钟");
-//        holder.tv_countdown_time.setContentDescription(al_countDown.get(position).getCountDownTime() +
-//                "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下来删除");
-        holder.tv_countdown_time.setOnHoverListener(new View.OnHoverListener() {
+        View.OnHoverListener onHoverListener = new View.OnHoverListener() {
             @Override
             public boolean onHover(View v, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_HOVER_ENTER:
                         Util.interrupt();
                         TatansToast.showAndCancel(al_countDown.get(position).getCountDownTime() +
-                "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下来删除");
+                                "分钟。播报间隔" + al_countDown.get(position).getIntervalTime() + "分钟。轻点一下来删除");
                 }
                 return false;
             }
-        });
+        };
+        holder.icon_time.setOnHoverListener(onHoverListener);
+        holder.tv_countdown_time.setOnHoverListener(onHoverListener);
         holder.tv_countdown_time.setTextColor(mContext.getResources().getColor(R.color.white));
-//        convertView.setOnClickListener(new OnClickListenerImpl(position));
         return convertView;
-    }
-
-    private class OnClickListenerImpl implements View.OnClickListener {
-        private int mPosition;
-
-        OnClickListenerImpl(int position) {
-            this.mPosition = position;
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (al_countDown.size() == 0) return;
-            bean = al_countDown.get(mPosition);
-            tdb.delete(bean);
-            al_countDown = tdb.findAll(CountDownBean.class);
-            Util.interrupt();
-            TatansToast.showAndCancel("删除成功");
-            notifyDataSetChanged();
-        }
     }
 }

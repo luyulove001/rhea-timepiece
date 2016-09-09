@@ -5,11 +5,10 @@
     android:background="@color/black"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_month_day"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_720x1280"
-        android:orientation="horizontal">
+        android:layout_height="@dimen/height_720x1280">
 
         <TextView
             android:id="@+id/month"
@@ -21,24 +20,28 @@
             android:textColor="#fff"
             android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/duration"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_720x1280"
-            android:layout_marginLeft="157dp"
-            android:gravity="center"
-            android:text="100小时"
-            android:textColor="#fff"
-            android:textSize="25sp" />
-
         <ImageView
             android:id="@+id/img_del"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="19dp"
+            android:layout_marginRight="20dp"
             android:src="@mipmap/arrow" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_720x1280"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/img_del"
+            android:gravity="center"
+            android:text="100小时"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+    </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
