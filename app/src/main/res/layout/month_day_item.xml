@@ -27,7 +27,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:layout_marginRight="20dp"
+            android:paddingEnd="20dp"
             android:src="@mipmap/arrow" />
 
         <TextView

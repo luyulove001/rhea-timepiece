@@ -42,7 +42,7 @@ public class MonthMassageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         tdb = TatansDb.create(Const.CountDownDB);
         c = Calendar.getInstance();
-        tvEmpty.setContentDescription("空白区域");
+        tvEmpty.setContentDescription("。");
     }
 
     @Override
