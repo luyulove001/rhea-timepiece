@@ -144,7 +144,8 @@ public class CountDownService extends Service {
                 broadcast = new Intent();
             broadcast.setAction(Const.CLOCK_STOP);
             sendBroadcast(broadcast);
-            getEndTime(mMillisInFuture - mMillisUntilFinished, startTime);
+            stopSelf();
+//            getEndTime(mMillisInFuture - mMillisUntilFinished, startTime);
             Log.e(tag, "mMillisInFuture = " + mMillisInFuture + " -- mMillisUntilFinished = "
                     + mMillisUntilFinished + " -- startTime = " + startTime);
         }
@@ -250,9 +251,9 @@ public class CountDownService extends Service {
         massageTimeBean.setMonth(month + 1);
         massageTimeBean.setDay(day);
         massageTimeBean.setStartTime(startTime);
-        massageTimeBean.setDuration((int) useTime / 60000);
-        Log.e(tag, useTime / 60000 + "分");
-        if (useTime / 60000 > 0 && this.bean.isMassage())
+        int duration = (int) (useTime % 60000 > 55000 ? (useTime / 60000) + 1 : useTime / 60000);
+        massageTimeBean.setDuration(duration);
+        if (duration > 0 && this.bean.isMassage())
             tdb.save(massageTimeBean);
         return massageTimeBean;
     }
