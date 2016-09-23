@@ -10,15 +10,14 @@ import android.widget.TextView;
 
 import net.tatans.coeus.db.sqlite.CursorUtils;
 import net.tatans.coeus.db.sqlite.DbModel;
-import net.tatans.coeus.network.tools.BaseActivity;
+import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
+import net.tatans.coeus.network.view.ViewInject;
 import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.adapter.MonthDayAdapter;
 import net.tatans.rhea.countdowntimer.bean.MassageTimeBean;
 import net.tatans.rhea.countdowntimer.bean.SelectResultBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
-import net.tatans.rhea.network.view.ContentView;
-import net.tatans.rhea.network.view.ViewIoc;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,11 +27,10 @@ import java.util.List;
  * 按摩统计界面
  * Created by cly on 2016/9/2.
  */
-@ContentView(R.layout.month_day)
-public class MonthMassageActivity extends BaseActivity {
-    @ViewIoc(R.id.month_day)
+public class MonthMassageActivity extends TatansActivity {
+    @ViewInject(id = R.id.month_day)
     private ListView massageTimeList;
-    @ViewIoc(R.id.empty_massage)
+    @ViewInject(id = R.id.empty_massage)
     private TextView tvEmpty;
     private TatansDb tdb;
     private Calendar c;
@@ -40,6 +38,7 @@ public class MonthMassageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.month_day);
         tdb = TatansDb.create(Const.CountDownDB);
         c = Calendar.getInstance();
         tvEmpty.setContentDescription("。");

@@ -34,8 +34,8 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
     TextView time_countdown;
     @ViewInject(id = R.id.time_interval)
     TextView time_interval;
-    @ViewInject(id = R.id.lyt_confirm, click = "onClick")
-    LinearLayout lyt_confirm;
+    @ViewInject(id = R.id.tv_confirm, click = "onClick")
+    TextView tv_confirm;
     @ViewInject(id = R.id.btn_isMassage)
     ImageView btnIsMassage;
     @ViewInject(id = R.id.join_massage_set, click = "onClick")
@@ -89,7 +89,7 @@ public class SettingActivity extends TatansActivity implements View.OnClickListe
                 intent.setClass(this, ModelActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.lyt_confirm:
+            case R.id.tv_confirm:
                 saveBean();
                 break;
             case R.id.join_massage_set:

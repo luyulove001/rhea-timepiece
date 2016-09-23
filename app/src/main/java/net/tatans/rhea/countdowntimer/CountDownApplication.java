@@ -2,10 +2,10 @@ package net.tatans.rhea.countdowntimer;
 
 import android.media.MediaPlayer;
 
+import net.tatans.coeus.network.speaker.Speaker;
 import net.tatans.coeus.network.tools.CrashHandler;
 import net.tatans.coeus.network.tools.SoundPoolUtil;
 import net.tatans.coeus.network.tools.TatansApplication;
-import net.tatans.coeus.network.tools.TatansSpeaker;
 
 import java.util.HashMap;
 
@@ -16,14 +16,14 @@ public class CountDownApplication extends TatansApplication {
     private static CountDownApplication sInstance;
     private static boolean isPause = true;
     private static MediaPlayer mediaPlayer;
-    private static TatansSpeaker speaker;
+    private static Speaker speaker;
     private static SoundPoolUtil soundPool;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        speaker = TatansSpeaker.create();
+        speaker = Speaker.getInstance(sInstance);
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.initTatans("countdown");
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -40,9 +40,9 @@ public class CountDownApplication extends TatansApplication {
         soundPool.stopAll();
     }
 
-    public static TatansSpeaker getSpeaker() {
+    public static Speaker getSpeaker() {
         if (speaker == null)
-            speaker = TatansSpeaker.create();
+            speaker = Speaker.getInstance(sInstance);
         return speaker;
     }
 
