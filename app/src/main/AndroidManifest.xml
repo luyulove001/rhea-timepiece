@@ -27,7 +27,7 @@
         <meta-data android:value="574f93c0e0f55a24e3002066" android:name="UMENG_APPKEY"></meta-data>
         <meta-data android:value="tatansPbulish" android:name="UMENG_CHANNEL"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -37,20 +37,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CountDownTimerActivity"
+            android:name=".activity.CountDownTimerActivity"
             android:screenOrientation="portrait"
             android:label="@string/countdown" />
         <activity
-            android:name=".DeleteActivity"
+            android:name=".activity.DeleteActivity"
             android:screenOrientation="portrait"
             android:label="删除倒计时" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".activity.SettingActivity"
             android:label="@string/setting"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CountDownSettingActivity"
+            android:name=".activity.CountDownSettingActivity"
             android:label="@string/countdown_set"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
@@ -60,15 +60,15 @@
             <!--</intent-filter>-->
         </activity>
         <activity
-            android:name=".IntervalSettingActivity"
+            android:name=".activity.IntervalSettingActivity"
             android:label="@string/interval_set"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CustomActivity"
+            android:name=".activity.CustomActivity"
             android:label="@string/custom"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ModelActivity"
+            android:name=".activity.ModelActivity"
             android:label="@string/model_set"
             android:screenOrientation="portrait" />
         <activity
@@ -76,7 +76,7 @@
             android:screenOrientation="portrait" />
 
         <service android:name=".CountDownService" />
-        <receiver android:name=".LockReceiver">
+        <receiver android:name=".activity.LockReceiver">
             <intent-filter>
                 <action android:name="net.tatans.rhea.lock.countDownTime.start" />
                 <action android:name="net.tatans.rhea.lock.countDownTime.pause" />

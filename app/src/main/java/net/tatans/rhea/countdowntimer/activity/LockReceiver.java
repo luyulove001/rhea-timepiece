@@ -1,10 +1,12 @@
-package net.tatans.rhea.countdowntimer;
+package net.tatans.rhea.countdowntimer.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
 import net.tatans.coeus.network.tools.TatansDb;
+import net.tatans.rhea.countdowntimer.CountDownApplication;
+import net.tatans.rhea.countdowntimer.CountDownService;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;

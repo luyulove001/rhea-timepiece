@@ -1,4 +1,4 @@
-package net.tatans.rhea.countdowntimer;
+package net.tatans.rhea.countdowntimer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,8 @@ import com.umeng.analytics.MobclickAgent;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.view.ViewInject;
-import net.tatans.rhea.countdowntimer.activity.MonthMassageActivity;
+import net.tatans.rhea.countdowntimer.CountDownApplication;
+import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.adapter.CountDownAdapter;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.bean.MassageTimeBean;

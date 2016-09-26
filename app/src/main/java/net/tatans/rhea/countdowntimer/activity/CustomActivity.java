@@ -1,4 +1,4 @@
-package net.tatans.rhea.countdowntimer;
+package net.tatans.rhea.countdowntimer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import com.umeng.analytics.MobclickAgent;
 import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
 

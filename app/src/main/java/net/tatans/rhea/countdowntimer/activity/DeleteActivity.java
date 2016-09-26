@@ -1,4 +1,4 @@
-package net.tatans.rhea.countdowntimer;
+package net.tatans.rhea.countdowntimer.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +14,7 @@ import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansDb;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.adapter.DelSchemeAdapter;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;

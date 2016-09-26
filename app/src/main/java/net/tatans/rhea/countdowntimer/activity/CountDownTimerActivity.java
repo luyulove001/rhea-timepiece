@@ -1,4 +1,4 @@
-package net.tatans.rhea.countdowntimer;
+package net.tatans.rhea.countdowntimer.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -20,6 +20,9 @@ import net.tatans.coeus.network.tools.TatansActivity;
 import net.tatans.coeus.network.tools.TatansLog;
 import net.tatans.coeus.network.tools.TatansToast;
 import net.tatans.coeus.network.view.ViewInject;
+import net.tatans.rhea.countdowntimer.CountDownApplication;
+import net.tatans.rhea.countdowntimer.CountDownService;
+import net.tatans.rhea.countdowntimer.R;
 import net.tatans.rhea.countdowntimer.bean.CountDownBean;
 import net.tatans.rhea.countdowntimer.utils.Const;
 import net.tatans.rhea.countdowntimer.utils.Preferences;
@@ -197,7 +200,6 @@ public class CountDownTimerActivity extends TatansActivity implements View.OnCli
                 CountDownApplication.setPause(isPause);
                 break;
             case R.id.layout_stop:
-//                CountDownApplication.getSpeaker().speech("倒计时结束");
                 TatansToast.showAndCancel("倒计时结束");
                 Intent stop = new Intent(Const.CLOCK_STOP);
                 sendBroadcast(stop);

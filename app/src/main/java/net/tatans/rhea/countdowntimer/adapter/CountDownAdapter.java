@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import net.tatans.rhea.countdowntimer.CountDownTimerActivity;
+import net.tatans.rhea.countdowntimer.activity.CountDownTimerActivity;
 import net.tatans.rhea.countdowntimer.R;
 
 import java.util.List;
